@@ -1,0 +1,135 @@
+@charset "UTF-8";
+
+
+#siguiente{
+
+	
+	color:#DE4B4B;
+}
+
+
+.centro{
+	
+	height: 460px;
+    width: 1300px;
+    border: 3px black solid;
+  
+
+  margin:auto;
+  
+  margin-top:10px;
+			  
+	
+}
+
+
+.producto {
+		
+	margin:20px;
+	height:380px;	
+	
+	width:500px;
+	 overflow-y:scroll;
+	
+	
+	position: absolute;
+	top:150px;
+	clear:both;
+	  float: left;
+	border:1px solid #8C9393;
+}
+
+
+.total{
+	
+	position: absolute;
+	top:555px;
+	margin-left:20px;
+	font-size:20px;
+		
+	color:red;
+}
+
+
+.centro td{
+	
+	 white-space: nowrap;
+	width: 100px;
+    text-align: center;
+    border-bottom: 1px #e3e3e3 solid;
+    padding: 15px;
+	
+	
+}
+
+
+
+#turnoActual{
+	
+	font-size:20px;
+	margin-top:10px;
+	margin-right:200px;
+	color:red;
+	float:right;
+	
+	padding-bottom: 10px;
+}
+
+
+
+.turno{
+
+	margin:10px;
+	float:right;
+	 width:650px;
+	 	
+	 height: 320px;
+	background:#FFF;
+	clear:both;
+}
+
+
+.boton{
+	
+	margin-right:200px;
+	float:right;
+	clear:both;
+
+}
+
+.boton Button{
+	
+    color: #fff;
+    background-color: #01cd74;
+ 
+    outline: none;
+    padding: 15px 12px;
+    cursor: pointer;
+    letter-spacing: 2px;
+    font-size: 15px;
+    font-weight: 600;
+    border: none;
+    text-transform: uppercase;
+    font-family: 'Raleway', sans-serif;
+	margin-top:20px;
+	
+	margin-left:40px;
+	
+	margin-right:50px;
+	
+}
+
+.boton Button:hover{
+	
+	
+	  background-color: red;
+}
+
+#btn_anterior{
+	
+		margin-left:100px;
+	
+	
+}
+
+

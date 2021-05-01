@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xmlns="http://xmlns.jcp.org/xml/ns/javaee" 
+ xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" 
+ id="WebApp_ID" version="4.0">
+
+ 
+  <servlet>
+  
+  	<servlet-name>RegistServlet</servlet-name>
+  	
+  	<servlet-class>servlet.RegistServlet</servlet-class>
+  
+  </servlet>
+  
+  <servlet-mapping>
+  
+  
+  	<servlet-name>RegistServlet</servlet-name>
+  	<url-pattern>/registServlet</url-pattern>
+  </servlet-mapping>
+  
+  
+  
+  
+
+    <servlet>
+  
+		  	<servlet-name>KaptchaServlet</servlet-name>
+		  	
+		  	<servlet-class>com.google.code.kaptcha.servlet.KaptchaServlet</servlet-class>
+  
+  </servlet>
+  
+  <servlet-mapping>
+  
+  
+		  	<servlet-name>KaptchaServlet</servlet-name>
+		  	<url-pattern>/kapth.jpg</url-pattern>
+  </servlet-mapping>
+  
+  
+  
+     <servlet>
+  
+			  	<servlet-name>Login</servlet-name>
+			  	
+			  	<servlet-class>servlet.Login</servlet-class>
+  
+  </servlet>
+  
+  <servlet-mapping>
+  
+  
+  		<servlet-name>Login</servlet-name>
+  			<url-pattern>/login</url-pattern>
+  </servlet-mapping>
+  
+
+<servlet>
+  
+			  	<servlet-name>ActivacionCuenta</servlet-name>
+			  	
+			  	<servlet-class>servlet.ActivacionCuenta</servlet-class>
+  
+  </servlet>
+  
+  <servlet-mapping>
+  
+  
+  		<servlet-name>ActivacionCuenta</servlet-name>
+  			<url-pattern>/activacionCuenta</url-pattern>
+  </servlet-mapping>
+  
+  
+  
+  
+  
+<servlet>
+  
+			  	<servlet-name>MandaListaPorQR</servlet-name>
+			  	
+			  	<servlet-class>com.manda.android.MandaListaPorQR</servlet-class>
+  
+  </servlet>
+  
+  <servlet-mapping>
+  
+  
+  		<servlet-name>MandaListaPorQR</servlet-name>
+  			<url-pattern>/mandaListaporqr</url-pattern>
+  </servlet-mapping>
+  
+  
+  
+  
+  <servlet>
+  
+			  	<servlet-name>MandarInformacionDeProducto</servlet-name>
+			  	
+			  	<servlet-class>com.manda.android.MandarInformacionDeProducto</servlet-class>
+  
+  </servlet>
+  
+  <servlet-mapping>
+  
+  
+  		<servlet-name>MandarInformacionDeProducto</servlet-name>
+  			<url-pattern>/mandarinformaciondeproducto</url-pattern>
+  </servlet-mapping>
+  
+  
+    <servlet>
+  
+			  	<servlet-name>MandarListaProductoUsuario</servlet-name>
+			  	
+			  	<servlet-class>com.manda.android.MandarListaProductoUsuario</servlet-class>
+  
+  </servlet>
+  
+  <servlet-mapping>
+  
+  
+  		<servlet-name>MandarListaProductoUsuario</servlet-name>
+  			<url-pattern>/mandarlistaproductousuario</url-pattern>
+  </servlet-mapping>
+  
+  
+    
+    <servlet>
+  
+			  	<servlet-name>MandaCuenta</servlet-name>
+			  	
+			  	<servlet-class>com.manda.android.MandaCuenta</servlet-class>
+  
+  </servlet>
+  
+  <servlet-mapping>
+  
+  
+  		<servlet-name>MandaCuenta</servlet-name>
+  			<url-pattern>/mandarcuenta</url-pattern>
+  </servlet-mapping>
+  
+  
+  
+  
+     <servlet>
+  
+			  	<servlet-name>MandaInformacionTienda</servlet-name>
+			  	
+			  	<servlet-class>com.manda.android.MandaInformacionTienda</servlet-class>
+  
+  </servlet>
+  
+  <servlet-mapping>
+  
+  
+  		<servlet-name>MandaInformacionTienda</servlet-name>
+  			<url-pattern>/mandainformaciontienda</url-pattern>
+  </servlet-mapping>
+  
+  
+       <servlet>
+  
+			  	<servlet-name>SiguienteServlet</servlet-name>
+			  	
+			  	<servlet-class>funciones.servlet.SiguienteServlet</servlet-class>
+  
+  </servlet>
+  
+  <servlet-mapping>
+  
+  
+  		<servlet-name>SiguienteServlet</servlet-name>
+  			<url-pattern>/siguiente</url-pattern>
+  </servlet-mapping>
+  
+  
+  
+  
+         <servlet>
+  
+			  	<servlet-name>MandarListaProductoUsuarioWeb</servlet-name>
+			  	
+			  	<servlet-class>funciones.servlet.MandarListaProductoUsuarioWeb</servlet-class>
+  
+  </servlet>
+  
+  <servlet-mapping>
+  
+  
+  		<servlet-name>MandarListaProductoUsuarioWeb</servlet-name>
+  			<url-pattern>/listausuarioweb</url-pattern>
+  </servlet-mapping>
+  
+  
+  
+  
+  
+  
+  
+  
+ 
+  <filter>
+  
+  	<filter-name>ManagerFilter</filter-name>
+  
+  <filter-class>com.filter.ManagerFilter</filter-class>
+  </filter>
+  <filter-mapping>
+  
+  		<filter-name>ManagerFilter</filter-name>
+  		
+  		
+  				<url-pattern>/pages/codigoActivacion.jsp</url-pattern>
+  			<url-pattern>/pagefunciones/*</url-pattern>
+  			
+  			
+ 	
+  </filter-mapping>
+  
+  
+  
+  
+</web-app>
+

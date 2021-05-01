@@ -1,0 +1,283 @@
+@charset "UTF-8";
+
+
+
+body{
+overflow: auto;
+}
+
+#login_header{
+	height: 80px;
+ 	
+	text-align :center;
+
+}
+
+
+.logo_img{
+	height:80px;
+	width:100px;
+	
+}
+
+
+#centro{
+	
+	height:700px;
+
+}
+
+
+
+#contenedor_anuncio{
+	
+	width: 600px;
+   	 height: 500px;
+	float:left;
+	overflow:hidden;
+	margin-left:150px;
+	margin-top: 50px;
+	border: 1px #e3e3e3 solid;
+}
+
+
+#caja_anuncio {
+
+ float: left;
+
+ width: 800%;
+
+}
+
+#contenedor_anuncio img{
+	
+	width: 600px;
+    height: 500px;
+    border-right:  2px  #e3e3e3 solid;
+}
+
+
+ 
+ #anuncio{
+
+float: left;
+
+}
+
+#copia_anuncio{
+
+float: left;
+
+}
+
+
+.caja_registrar #registra {
+	
+	float: right;
+	margin-left: 10px;
+	color: #5385E7;
+	text-decoration: none;
+}
+
+.caja_olvidar{
+	
+	margin-top: 20px;
+	margin-right: 10px;
+	   height: 10px;
+}
+
+
+
+.caja_olvidar #olvidar {
+	
+	float: left;
+	color:#F89A83;
+	text-decoration: none;
+	
+		font-size: 15px;
+}
+
+
+
+.form{
+
+	width: 400px;
+     height: 500px;
+	float: right;
+	margin-right:50px;
+	margin-top: 50px;
+	background-color: #fff;
+	border: 1px #e3e3e3 solid;
+}
+.login_normal,.login_trabajador{
+  	width: 400px;
+     height: 500px;
+  	background: linear-gradient(#485A67,#ABD2EE); /*color cambiar de desde uno hasta otro */
+    border-radius: 5px;
+    box-shadow: 0 0 3px #ccc;  
+    overflow: hidden;
+    transition: height 1s;
+}
+
+
+.form_activacion{
+	 padding:40px;
+	 
+	 margin:100px;
+  		width: 400px;
+     height:250px;
+  	background: linear-gradient(#485A67,#ABD2EE); /*color cambiar de desde uno hasta otro */
+    border-radius: 5px;
+    box-shadow: 0 0 3px #ccc;  
+    overflow: hidden;
+    transition: height 1s;
+    
+    float:right;
+}
+
+
+
+#codigoActivacion {
+	font-size: 15px;
+    font-weight: 500;
+    text-align: left;
+    text-transform: capitalize;
+    letter-spacing: 1px;
+    padding: 12px 10px 12px 10px;
+	width:90%;
+	display:inline-block;
+    box-sizing: border-box;
+    outline: none;
+	font-family: 'Raleway', sans-serif;
+}
+
+
+#boton_activa{
+	
+background-color: rgba(244, 22, 7, 0.7);
+    color: aliceblue;
+    height: 45px;
+    font-size: 20px;
+    cursor:pointer;
+    margin: 30px 100px;
+    border: none;
+    text-align: center;
+	
+	
+}
+
+
+
+.form form{
+   padding: 25px 40px;
+}
+
+
+
+
+.caja_datos{
+	
+	
+	padding-top:5px;
+	
+}
+
+
+
+
+.form .form_item{
+    display: flex;
+    margin: 25px 10px;
+    vertical-align: middle;
+}
+
+.form input{
+    outline: none;
+    text-indent: 10px;
+    flex: 1;
+    width: auto;
+    border: none;
+    border-radius: 3px;
+    height: 36px;
+}
+.form form label{
+    width: 90px;
+    float: left;
+    line-height: 36px;
+}
+h1{
+	 margin-top:-10px;
+    text-align: center;
+
+}
+#sub_btn,#sub_btntrabajador{
+    background-color: rgba(244, 22, 7, 0.7);
+    color: aliceblue;
+    height: 45px;
+    font-size: 20px;
+    cursor:pointer;
+    margin-top: 30px;
+    border: none;
+    text-align: center;
+
+}
+.form .info{
+  
+    font-size: 14px;
+    margin:0px 10px 70px 10px;
+    
+}
+
+
+.errorMsg ,.errorMsgTrabajador{
+	padding-left: inherit;
+	
+	color:red;
+}
+
+
+
+
+
+.form .info span{
+    color: #fff;
+    float:left;
+    background-color: #87C2C1;
+}
+
+.info a{
+	
+	float: right;
+}
+
+
+.form .info span:hover{
+    cursor: pointer;
+    border-bottom: 1px solid ;
+    
+}
+
+
+.form_login{
+	
+	
+	    margin-left:50px;
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

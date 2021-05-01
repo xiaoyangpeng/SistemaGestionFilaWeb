@@ -1,0 +1,77 @@
+@charset "UTF-8";
+
+
+#siguiente_header{
+	height: 80px;
+ 	
+	text-align :center;
+
+}
+
+
+.logo_img{
+	height:80px;
+	width:100px;
+	
+}
+
+
+body {
+	padding: 0;
+	margin: 0;
+	background: url(../img/fondo_registrar.jpg) no-repeat 0px 0px;
+	background-size: cover;
+	font-family: 'Raleway', sans-serif;
+}
+
+
+.botones{
+	margin-left:50px;
+	
+	margin-right:50px;
+	padding:10px;
+	background: #7FB1D5;
+
+	font-size: 100%;
+	text-align:center
+	
+}
+
+
+
+.botones a{
+	
+	
+	text-decoration: none;
+}
+
+
+.boton_dentro:hover{
+	
+		color:#DE4B4B;
+
+}
+
+
+.boton_dentro{
+	
+	
+	margin: 5px 30px;
+	
+	color: #FFFFFF;
+	
+}
+
+.boton_out_cuenta{
+	
+	float:right;
+	margin: 5px 30px;
+	
+}
+
+
+.boton_out_cuenta:hover{
+	
+	color:#033FFF
+	
+}

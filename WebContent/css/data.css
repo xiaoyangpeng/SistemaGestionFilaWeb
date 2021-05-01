@@ -1,0 +1,89 @@
+* {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+#data {
+	
+	border: 1px solid #ccc;
+	background-color: white;
+}
+
+#data #data_top {
+	display: flex;
+	justify-content: flex-end;
+	padding: 15px 20px;
+}
+
+#data #data_top dd {
+	width: 15px;
+	height: 15px;
+	background-color: #c0e2fd;
+	margin-right: 10px;
+}
+
+#data #data_top dl:nth-child(2) dd {
+	background-color: white;
+	border: 1px solid #ccc;
+	margin-left: 50px;
+}
+
+#data #data_top dl {
+	display: flex;
+	align-items: center;
+}
+
+#data #data_top dt {
+	font-size: 13px;
+	color: #999;
+}
+
+#data_body {
+	padding: 30px;
+	background-color: #f7f7f7;
+	border-top: 1px solid #ccc;
+}
+
+#data_body_top {
+	display: flex;
+	margin-bottom: 5px;
+}
+
+#data_body_top p {
+	width: 52px;
+	font-size: 12px;
+	text-align: center;
+	color: #666;
+	padding: 0px;
+	margin-left: 5px;
+}
+
+#data_body ul>li {
+	display: flex;
+}
+
+#data_body ol li {
+	width: 25px;
+	height: 25px;
+	background-color: white;
+	border-top: 1px solid #eee;
+	border-right: 1px solid #eee;
+}
+
+#data_body ol li:nth-child(1) {
+	border-left: 1px solid #ccc;
+}
+
+#data_body ol {
+	display: flex;
+	/*margin-left: 20px;*/
+}
+
+#data_body ul>li p {
+	width: 25px;
+	height: 25px;
+	font-size: 12px;
+	line-height: 25px;
+	    margin-right: 10px
+}
