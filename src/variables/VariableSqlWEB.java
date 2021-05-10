@@ -32,9 +32,10 @@ public class VariableSqlWEB {
 	public static final String BUSCAR_INCORPORAR="Select * from incorporar where id_cola=? and id_usuario=?";
 	
 	
-	public static final String BUSCAR_LISTA_PRODUCTO="SELECT producto.id_producto,precio,producto.nombre,producto.categoria from\r\n"
+	public static final String BUSCAR_LISTA_PRODUCTO="SELECT producto.id_producto,precio,producto.nombre,producto.categoria"
+			+ ",producto.id_tienda from\r\n"
 			+ "        tienda join producto on producto.id_tienda=tienda.id_tienda\r\n"
-			+ "         where qr=? and  producto.nombre like ?";
+			+ "         where tienda.id_tienda=? and  producto.nombre like ?";
 	
 	
 
@@ -56,7 +57,8 @@ public class VariableSqlWEB {
 			+ "incorporar on incorporar.id_producto=producto.id_producto\r\n"
 			+ "join usuarioencola on usuarioencola.id_cola=incorporar.id_cola\r\n"
 			+ "where incorporar.id_cola=? and incorporar.id_usuario=?\r\n"
-			+ "and usuarioencola.estado_cliente='E' and incorporar.cantidad_producto>0";
+			+ "and usuarioencola.estado_cliente='E' and incorporar.cantidad_producto>0"
+			+ "and incorporar.estado='E'";
 	
 	
 	
@@ -71,7 +73,7 @@ public class VariableSqlWEB {
 	public static final String LISTAR_RPIMEROS_5_TURNOS="	select DISTINCT cola.turno_actual, usuario.id_usuario,usuarioencola.turno,formato,usuario.nombre,hora_entrada from usuarioencola\r\n"
 			+ "		   join usuario on usuario.id_usuario=usuarioencola.id_usuario\r\n"
 			+ "            join cola on cola.id_cola=usuarioencola.id_cola\r\n"
-			+ "	        where rownum<=5  and estado_cliente='E' and usuarioencola.id_cola=?\r\n"
+			+ "	        where and estado_cliente='E' and usuarioencola.id_cola=?\r\n"
 			+ "        \r\n"
 			+ "        order by usuarioencola.turno\r\n";
 
@@ -115,5 +117,16 @@ public class VariableSqlWEB {
 	
 	
 	public static final String SI_HAY_ESTE_TURNO_EN_FILA="select id_usuario from usuarioencola where turno=? and estado_cliente='E'";
+	
+	
+	public static final String CON_ID_TIENDA_BUSCA_TIEMPO_TURNO_ACTUAL="select  turno_actual, tiempomedia ,id_cola from tienda \r\n"
+			+ "join cola on cola.id_tienda=tienda.id_tienda\r\n"
+			+ "where tienda.id_tienda=? and cola.estado='a'";
+	
+	
+	public static final String CON_EMIAL_BUSCA_ID_TIENDA="select cuenta_tienda.id_tienda from  cuenta_tienda\r\n"
+			+ "\r\n"
+			+ "where email=?";
+	
 	
 }

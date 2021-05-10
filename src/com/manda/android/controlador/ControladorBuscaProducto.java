@@ -1,6 +1,7 @@
 package com.manda.android.controlador;
 
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 
 import dao.utils.BaseDao;
@@ -8,8 +9,7 @@ import variables.VariableSqlWEB;
 
 public class ControladorBuscaProducto extends BaseDao{
 	
-	
-	private String codigoQR;
+
 	private	String id_cola;
 	
 	private String id_usuario;
@@ -18,13 +18,12 @@ public class ControladorBuscaProducto extends BaseDao{
 
 		private String nombreProducto;
 	
-		public ControladorBuscaProducto(String codigoQR, String id_cola, String id_usuario,String nombreProducto) {
-				this.codigoQR = codigoQR;
+		public ControladorBuscaProducto(String id_cola, String id_usuario,String nombreProducto) {
+			
 				this.id_cola = id_cola;
 				this.id_usuario = id_usuario;
 				this.nombreProducto=nombreProducto.toLowerCase();
 
-				
 			}
 		
 		
@@ -38,17 +37,20 @@ public class ControladorBuscaProducto extends BaseDao{
 		}
 	
 		
+		public ControladorBuscaProducto() {
+			
+		}
 		
 		
-		
-		
-		/*public static void main(String[] args) {
+		public static void main(String[] args) {
 				
 				ControladorBuscaProducto busca=new ControladorBuscaProducto("1","222");
 				
-				Comida comida=busca.consultaComida(1);
 				
-				System.out.println(comida.getIngrediente());
+				busca.consultaListaProducto();
+				//Comida comida=busca.consultaComida(1);
+				
+				//System.out.println(comida.getIngrediente());
 				
 				//ControladorBuscaProducto busca=new ControladorBuscaProducto("jaja");
 				
@@ -56,15 +58,19 @@ public class ControladorBuscaProducto extends BaseDao{
 				
 				//busca.consultarMercancia();
 				
-			}*/
+			}
 	
 		
 	
 	public ArrayList<Productos> consultaListaProducto(){
 		
+		
+		BigDecimal id_tienda=(BigDecimal)queryForUnValor("select id_tienda from cola where id_cola=?", Integer.parseInt(id_cola));
+		
+		
 		ArrayList<Productos> productos;
 		
-		productos=(ArrayList<Productos>) queryForList(Productos.class, VariableSqlWEB.BUSCAR_LISTA_PRODUCTO, codigoQR,"%"+nombreProducto+"%");
+		productos=(ArrayList<Productos>) queryForList(Productos.class, VariableSqlWEB.BUSCAR_LISTA_PRODUCTO, id_tienda,"%"+nombreProducto+"%");
 		
 		return productos;
 		

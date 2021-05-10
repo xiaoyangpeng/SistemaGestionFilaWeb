@@ -14,6 +14,7 @@ import com.manda.android.controlador.buscatienda.ControladorBuscarTienda;
 import com.manda.android.controlador.buscatienda.TiendaArray;
 
 import json.crearjson.CrearJson;
+import variables.RespuestaAndroid;
 
 public class MandaInformacionTienda extends HttpServlet{
 
@@ -23,11 +24,14 @@ public class MandaInformacionTienda extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-	
 
+		
+		int id_usuario=FiltroAndroid.filtro(req, resp);
+		
+		if(id_usuario!=0) {
 		String nombre=req.getParameter("nombre");
 		
-		
+	
 		TiendaArray tiendaArray=new TiendaArray();
 		
 		ControladorBuscarTienda buscaTienda=new ControladorBuscarTienda(nombre);
@@ -42,7 +46,10 @@ public class MandaInformacionTienda extends HttpServlet{
 		out.print(formatoJson);
 		out.flush();
 		out.close();
-		
+		}else {
+			
+			resp.setStatus(RespuestaAndroid.NO_HAY_AUTORIZACION);
+		}
 	}
 	
 }

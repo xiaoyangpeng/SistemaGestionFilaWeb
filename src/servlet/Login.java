@@ -105,7 +105,9 @@ public class Login extends HttpServlet{
 	
 	public void crearTokenyCookie( HttpServletResponse resp,String email, int contrasena,ControladorLogin login) {
 		
-		String token=	JwtUtil.crearToken(email, contrasena, login.crearcola());
+		
+		
+		String token=	JwtUtil.crearTokenWeb(email, contrasena, login.crearcola(),login.buscarIdTienda(email));
 		
 		Cookie cookie=new Cookie("token",token);
 		

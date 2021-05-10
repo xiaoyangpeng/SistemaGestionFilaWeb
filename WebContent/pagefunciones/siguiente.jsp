@@ -40,24 +40,11 @@
 </head>
 <body>
 
-		<div id="siguiente_header"  >
-			<a href="siguiente.html"><img class="logo_img" alt="" src="img/logo.png" ></a>
-		</div>
 
-	
-		<div class="botones">
-		
-				<a href="siguiente.html"><span class="boton_dentro" id="siguiente">Siguiente</span></a>
-				<a href="visualizar.html"><span class="boton_dentro" id="visualizar">Visualizar Fila</span></a>
-				<a href="addupdate.html"><span class="boton_dentro" id="addupdate">AÃ±adir modificar producto</span></a>
-				<a href="activafila.html"><span class="boton_dentro" id="activafila">Activar/Desactivar Fila</span></a>
-				<a href="darnumero.html"><span class="boton_dentro" id="darnumero">Dar numero</span></a>
 
-				<a href="generaqr.html"><span class="boton_dentro" id="generaqr">Genera QR</span></a>
-				
-				<span class="boton_out_cuenta" >Salir </span>
-		</div>
-		
+		<%@include file="/pagefunciones/botones.jsp" %>
+
+
 	<div class="centro">
 		
 

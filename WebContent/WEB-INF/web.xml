@@ -56,6 +56,29 @@
   			<url-pattern>/login</url-pattern>
   </servlet-mapping>
   
+  
+  
+       <servlet>
+  
+			  	<servlet-name>LoginSinContrasena</servlet-name>
+			  	
+			  	<servlet-class>servlet.LoginSinContrasena</servlet-class>
+  
+  </servlet>
+  
+  <servlet-mapping>
+  
+  
+  		<servlet-name>LoginSinContrasena</servlet-name>
+  			<url-pattern>/entrada</url-pattern>
+  </servlet-mapping>
+  
+  
+  
+  
+  
+  
+  
 
 <servlet>
   
@@ -161,6 +184,27 @@
   </servlet-mapping>
   
   
+  
+  
+       <servlet>
+  
+			  	<servlet-name>MandaTiendaRemota</servlet-name>
+			  	
+			  	<servlet-class>com.manda.android.MandaTiendaRemota</servlet-class>
+  
+  </servlet>
+  
+  <servlet-mapping>
+  
+  
+  		<servlet-name>MandaTiendaRemota</servlet-name>
+  			<url-pattern>/mandatiendaremota</url-pattern>
+  </servlet-mapping>
+  
+  
+ 
+  
+  
        <servlet>
   
 			  	<servlet-name>SiguienteServlet</servlet-name>
@@ -176,9 +220,7 @@
   			<url-pattern>/siguiente</url-pattern>
   </servlet-mapping>
   
-  
-  
-  
+
          <servlet>
   
 			  	<servlet-name>MandarListaProductoUsuarioWeb</servlet-name>
@@ -196,6 +238,21 @@
   
   
   
+  
+         <servlet>
+  
+			  	<servlet-name>GestionProductoServlet</servlet-name>
+			  	
+			  	<servlet-class>funciones.controlador.productos.GestionProductoServlet</servlet-class>
+  
+  </servlet>
+  
+  <servlet-mapping>
+  
+  
+  		<servlet-name>GestionProductoServlet</servlet-name>
+  			<url-pattern>/manager/productoservlet</url-pattern>
+  </servlet-mapping>
   
   
   
@@ -215,9 +272,9 @@
   		
   				<url-pattern>/pages/codigoActivacion.jsp</url-pattern>
   			<url-pattern>/pagefunciones/*</url-pattern>
-  			
-  			
- 	
+  		
+
+ 			<url-pattern>		/proyectoFinalEntrada/entrada</url-pattern>
   </filter-mapping>
   
   

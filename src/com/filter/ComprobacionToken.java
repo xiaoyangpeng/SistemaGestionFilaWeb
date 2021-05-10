@@ -13,6 +13,28 @@ public class ComprobacionToken {
 	public static int vertificaSihayToken(HttpServletRequest req) {
 		
 
+		int id_cola=0;
+		
+		Cookie[] cookies=req.getCookies();
+		
+		for(Cookie c:cookies) {
+			
+			if(c.getName().equals("token")) {
+				
+				id_cola=JwtUtil.vertificar(c.getValue());
+				break;
+			}
+		
+			
+		}
+		
+		return id_cola;
+		
+	}
+	
+	public static int vertificaIdTienda(HttpServletRequest req) {
+		
+
 		int id_tienda=0;
 		
 		Cookie[] cookies=req.getCookies();
@@ -21,7 +43,7 @@ public class ComprobacionToken {
 			
 			if(c.getName().equals("token")) {
 				
-				id_tienda=JwtUtil.vertificar(c.getValue());
+				id_tienda=JwtUtil.vettificar_id_tienda(c.getValue());
 				break;
 			}
 		
@@ -31,5 +53,6 @@ public class ComprobacionToken {
 		return id_tienda;
 		
 	}
+	
 	
 }

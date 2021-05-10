@@ -16,6 +16,9 @@ import com.manda.android.controlador.BuscaListaProductoUsuario;
 import com.manda.android.controlador.ListaProducto;
 import com.manda.android.controlador.ListaProductoAux;
 
+import json.crearjson.CrearJson;
+import variables.RespuestaAndroid;
+
 public class MandarListaProductoUsuario extends HttpServlet
 
 {
@@ -25,13 +28,15 @@ public class MandarListaProductoUsuario extends HttpServlet
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 	
-		
+		int id_usuarioaux=FiltroAndroid.filtro(req, resp);
 		
 		String id_cola=req.getParameter("idcola");
 		String id_usuario=req.getParameter("idusuario");
 		
+
+
+		if(Integer.parseInt(id_usuario)==id_usuarioaux) {
 		
-	
 		BuscaListaProductoUsuario buscaListaProductoUsuario=new BuscaListaProductoUsuario(Integer.parseInt(id_cola),Integer.parseInt(id_usuario));
 		
 		
@@ -39,13 +44,8 @@ public class MandarListaProductoUsuario extends HttpServlet
 		
 		listaProductoAux.setListaproducto(buscaListaProductoUsuario.buscar());
 		
-		
-		// 调用GSON jar工具包封装好的toJson方法，可直接生成JSON字符串
-		Gson gson=new GsonBuilder().setPrettyPrinting().create();
-		
-		
-		String json= gson.toJson(listaProductoAux);
-		
+
+		String json= CrearJson.crearJson(listaProductoAux);		
 		
 		resp.setContentType("application/json;charset=UTF-8");
 		resp.setCharacterEncoding("utf-8");
@@ -54,7 +54,10 @@ public class MandarListaProductoUsuario extends HttpServlet
 		out.flush();
 		
 		out.close();
-		
+		}else {
+			
+			resp.setStatus(RespuestaAndroid.NO_HAY_AUTORIZACION);
+		}
 		
 	}
 	

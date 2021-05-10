@@ -23,7 +23,10 @@ public class MandaCuenta extends HttpServlet{
 		// TODO Auto-generated method stub
 	
 		
+		String id_prodcuto=req.getParameter("idproducto");
 		
+		
+
 		String dowloadFile="22.png";
 		
 		

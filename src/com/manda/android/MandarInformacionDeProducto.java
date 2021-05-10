@@ -16,13 +16,15 @@ import com.manda.android.controlador.ControladorBuscaProducto;
 import com.manda.android.controlador.Mercancia;
 import com.manda.android.controlador.Servicio;
 
+import variables.RespuestaAndroid;
+
 public class MandarInformacionDeProducto extends HttpServlet{
 
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		
+		int id_usuarioaux=FiltroAndroid.filtro(req, resp);
 		
 		String id_usuario=req.getParameter("idusuario");
 		
@@ -31,22 +33,18 @@ public class MandarInformacionDeProducto extends HttpServlet{
 		String id_producto=req.getParameter("idproducto");
 		
 		String categoria=req.getParameter("categoria");
+	
 		
+		if(Integer.parseInt(id_usuario)==id_usuarioaux) {
+		
+	
 		String json = null;
-		
-		
 		
 		ControladorBuscaProducto buscar=new ControladorBuscaProducto(id_cola,id_usuario);
 
 		// 调用GSON jar工具包封装好的toJson方法，可直接生成JSON字符串
 		Gson gson=new GsonBuilder().setPrettyPrinting().create();
 		
-		
-	/*	System.out.println(categoria);
-		
-		System.out.println(id_producto);
-		
-		System.out.println(id_cola);*/
 		
 		if(categoria.equals("comida")) {
 			
@@ -73,7 +71,6 @@ public class MandarInformacionDeProducto extends HttpServlet{
 			
 		}
 	
-		
 	
 		resp.setContentType("application/json;charset=UTF-8");
 		resp.setCharacterEncoding("utf-8");
@@ -82,6 +79,11 @@ public class MandarInformacionDeProducto extends HttpServlet{
 		out.flush();
 		
 		out.close();
+		
+		}else {
+			
+			resp.setStatus(RespuestaAndroid.NO_HAY_AUTORIZACION);
+		}
 
 	}
 	

@@ -128,7 +128,7 @@ public class ControladorLogin extends BaseDao {
 	
 
 	
-	public int  crearcola() {
+	public  int  crearcola() {
 		
 		BigDecimal hay=(BigDecimal)queryForUnValor(VariableSqlWEB.BUSCAR_SI_HAY_COLA_CRADA,cuenta_tienda.getId_tienda(),FechaYhora.fechaHoy() );
 		
@@ -147,6 +147,16 @@ public class ControladorLogin extends BaseDao {
 		}
 	}
 	
+	
+	public int buscarIdTienda(String email) {
+		
+		BigDecimal numero=(BigDecimal)queryForUnValor(VariableSqlWEB.CON_EMIAL_BUSCA_ID_TIENDA, email);
+		
+		
+		return Integer.parseInt(numero.toString());
+		
+		
+	}
 	
 	
 }

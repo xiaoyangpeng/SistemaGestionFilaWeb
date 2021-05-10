@@ -14,6 +14,8 @@ import com.google.gson.GsonBuilder;
 import com.manda.android.controlador.ControladorBuscaProducto;
 import com.manda.android.controlador.ProductosAux;
 
+import variables.RespuestaAndroid;
+
 
 
 public class MandaListaPorQR extends HttpServlet{
@@ -23,24 +25,26 @@ public class MandaListaPorQR extends HttpServlet{
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		
-		String qr=req.getParameter("qr");
+		int id_usuarioaux=FiltroAndroid.filtro(req, resp);
 		
 		String id_usuario=req.getParameter("idusuario");
 		
 		String id_cola=req.getParameter("idcola");
 		
 		String nombreProducto=req.getParameter("nombreproducto");
-	
-	
+
 		
-		if(qr!=null&&id_cola!=null&&id_usuario!=null&&nombreProducto!=null) {
+		if(id_cola!=null&&id_usuario!=null&&nombreProducto!=null) {
 			
-				ControladorBuscaProducto buscar=new ControladorBuscaProducto(qr,id_cola,id_usuario,nombreProducto);
+						// vertifica que el id del usuario es el quiene esta llamando
+			
+				if(Integer.parseInt(id_usuario)==id_usuarioaux) {
+			
+				ControladorBuscaProducto buscar=new ControladorBuscaProducto(id_cola,id_usuario,nombreProducto);
 				
 				ProductosAux productoAux=new ProductosAux(); // meter arrayList en un clase facilita trabajar luego
 				
 				productoAux.setProductos(buscar.consultaListaProducto());
-			
 				
 				// 调用GSON jar工具包封装好的toJson方法，可直接生成JSON字符串
 				Gson gson=new GsonBuilder().setPrettyPrinting().create();
@@ -54,6 +58,11 @@ public class MandaListaPorQR extends HttpServlet{
 				out.flush();
 				
 				out.close();
+				}else {
+					
+					resp.setStatus(RespuestaAndroid.NO_HAY_AUTORIZACION);
+					
+				}
 		}
 	}
 	

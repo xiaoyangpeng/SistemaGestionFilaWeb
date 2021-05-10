@@ -24,5 +24,7 @@
 	<classpathentry kind="lib" path="jar_Token_JWT/jackson-core-2.11.0.jar"/>
 	<classpathentry kind="lib" path="jar_Token_JWT/jackson-databind-2.11.0.jar"/>
 	<classpathentry kind="lib" path="jar_Token_JWT/java-jwt-3.15.0.jar"/>
+	<classpathentry kind="lib" path="JSTL/taglibs-standard-impl-1.2.1.jar"/>
+	<classpathentry kind="lib" path="JSTL/taglibs-standard-spec-1.2.1.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

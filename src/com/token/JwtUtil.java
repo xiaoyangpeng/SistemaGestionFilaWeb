@@ -16,7 +16,7 @@ public class JwtUtil {
 
   
 	
-	public static String crearToken(String email,int password,int id_cola) {
+	public static String crearTokenWeb(String email,int password,int id_cola,int id_tienda) {
 		
 	    String token = null ;
 		try {
@@ -25,6 +25,7 @@ public class JwtUtil {
 		        .withClaim("id_cola", id_cola)
 		        .withClaim("email", email)
 		        .withClaim("password",password)
+		        .withClaim("id_tienda",id_tienda)
 		        .sign(algorithm);
 		} catch (JWTCreationException exception){
 		    //Invalid Signing configuration / Couldn't convert Claims.
@@ -66,4 +67,44 @@ public class JwtUtil {
 		
 	}
 
+	
+	public static int vertificar_id_usuario(String token) {
+		
+	    DecodedJWT jwt=null ;
+		try {
+		    Algorithm algorithm = Algorithm.HMAC256("FADSFOASHDIUFASHDOFHADSOFHJO");
+		    JWTVerifier verifier = JWT.require(algorithm)
+		        .build(); //Reusable verifier instance
+		    jwt = verifier.verify(token);
+		      
+		} catch (JWTVerificationException exception){
+		    //Invalid signature/claims
+			// error de token
+			return 0;
+		}
+		
+		return Integer.parseInt(jwt.getClaim("id_usuario").toString());
+		
+	}
+	
+	
+	public static int vettificar_id_tienda(String token) {
+		
+		
+	    DecodedJWT jwt=null ;
+		try {
+		    Algorithm algorithm = Algorithm.HMAC256("FADSFOASHDIUFASHDOFHADSOFHJO");
+		    JWTVerifier verifier = JWT.require(algorithm)
+		        .build(); //Reusable verifier instance
+		    jwt = verifier.verify(token);
+		      
+		} catch (JWTVerificationException exception){
+		    //Invalid signature/claims
+			// error de token
+			return 0;
+		}
+		
+		return Integer.parseInt(jwt.getClaim("id_tienda").toString());
+		
+	}
 }

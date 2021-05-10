@@ -37,7 +37,7 @@ public class ManagerFilter implements Filter{
 			
 			// ya ha hehco su login
 		}else {
-			
+		
 			chain.doFilter(request, response);
 			
 		}

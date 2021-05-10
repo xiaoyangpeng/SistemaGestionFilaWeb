@@ -5,3 +5,53 @@
 	color:#DE4B4B;
 	
 }
+
+.centro{
+	
+	height: 460px;
+    width: 1300px;
+    border: 3px black solid;
+  
+
+  margin:auto;
+  
+  margin-top:10px;
+			  
+		 overflow-y:scroll;
+}
+
+
+
+
+.producto {
+		
+	margin:auto;
+	height:380px;	
+	
+	width:500px;
+
+	
+
+}
+
+
+.centro td{
+	
+	 white-space: nowrap;
+	width: 100px;
+    text-align: center;
+    border-bottom: 1px #e3e3e3 solid;
+    padding: 15px;
+	
+	
+}
+
+
+
+
+
+
+
+
+
+

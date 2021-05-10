@@ -37,9 +37,7 @@ public abstract class BaseDao {
 		} catch (SQLException e) {
 	
 			e.printStackTrace();
-			
-			return update(sql, args);
-			
+		  return 0;
 		}finally {
 			
 			JdbcUtils.close(connection);

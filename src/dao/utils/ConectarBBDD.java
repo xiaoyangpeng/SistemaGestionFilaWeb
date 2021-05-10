@@ -18,14 +18,12 @@ public Connection conectarOracle() {
 		
 		try {
 		
-			FileInputStream fileEntrada=new FileInputStream("D:\\apache-tomcat-9.0.41\\wtpwebapps\\proyectoFinalEntrada\\ficheroconfiguracion\\datosBBDD.conf");
+			FileInputStream fileEntrada=new FileInputStream("E:\\desktop\\JAVAWEB\\proyectoFinalEntrada\\WebContent\\ficheroconfiguracion\\datosBBDD.conf");
 			
 			Properties entrada=new Properties();
 
 			entrada.load(fileEntrada);
-			
 		
-
 			conectar(entrada.getProperty("IP"), entrada.getProperty("PUERTO"), 
 					entrada.getProperty("NOMBRE_SERVICIO"), entrada.getProperty("USUARIO"), 
 					entrada.getProperty("CONTRASENA"));
