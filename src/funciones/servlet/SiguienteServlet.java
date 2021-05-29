@@ -13,8 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 import com.filter.ComprobacionToken;
 import com.token.JwtUtil;
 
-import funciones.controlador.ControladorSiguiente;
-import funciones.controlador.UsuarioEnCola;
+import funciones.controlador.siguiente.ControladorSiguiente;
+import funciones.controlador.siguiente.UsuarioEnCola;
 import json.crearjson.CrearJson;
 
 public class SiguienteServlet extends HttpServlet{
@@ -26,7 +26,7 @@ public class SiguienteServlet extends HttpServlet{
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 	
-	int id_cola=ComprobacionToken.vertificaSihayToken(req);
+	int id_cola=ComprobacionToken.vertificaidColaToken(req);
 		
 		
 		if(id_cola!=0) {
@@ -64,8 +64,7 @@ public class SiguienteServlet extends HttpServlet{
 			
 			PrintWriter out = new PrintWriter(resp.getOutputStream());
 			out.write("<script language='javasrcipt'>alert('No se puede borrar Cookie');</script>");
-			resp.sendError(resp.SC_NOT_FOUND);
-			
+		
 			out.flush();
 			out.close();
 		}

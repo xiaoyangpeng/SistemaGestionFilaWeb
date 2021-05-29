@@ -7,6 +7,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.filter.ComprobacionToken;
+
+import tienda.controlador.ControladorLogin;
+
 
 
 
@@ -14,12 +18,30 @@ import javax.servlet.http.HttpServletResponse;
 public class LoginSinContrasena extends HttpServlet {
 
 	
-	
-	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		resp.sendRedirect(req.getContextPath()+"/pagefunciones/siguiente.jsp");
+		
+		int id_cola=ComprobacionToken.vertificaidColaToken(req);
+		
+		if(id_cola==0) {
+			
+			req.getRequestDispatcher("/pages/login.jsp").forward(req,resp);
+			
+		}else {
+			
+			ControladorLogin controlador=new ControladorLogin();
+			
+			if(!controlador.buscaFehcaColaEsHoy(id_cola)) {
+				
+				controlador.crearcola(id_cola);
+			}
+			
+			resp.sendRedirect(req.getContextPath()+"/pagefunciones/siguiente.jsp");
+			
+		}
+	
+		
 	}
 	
 	

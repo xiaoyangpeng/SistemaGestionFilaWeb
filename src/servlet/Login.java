@@ -13,6 +13,7 @@ import org.apache.catalina.Session;
 
 import com.token.JwtUtil;
 
+import dao.implet.InfoTienda;
 import tienda.controlador.ControladorLogin;
 import variables.ResultadoLogin;
 import variables.ResultadoLogin.*;
@@ -39,7 +40,7 @@ public class Login extends HttpServlet{
 		
 		
 		int res=login.mandarInformacionAcceso(email, contrasena);
-		
+
 		switch (res) {
 		
 		// exito
@@ -47,9 +48,9 @@ public class Login extends HttpServlet{
 		
 			req.getSession();
 			
-			crearTokenyCookie(resp,email,contrasena,login);
+			String nombretienda=crearTokenyCookie(resp,email,contrasena,login);
 			
-			//req.getRequestDispatcher("pagefunciones/siguiente.jsp").forward(req, resp);
+			req.getSession().setAttribute("nombretienda", nombretienda);
 			
 			resp.sendRedirect(req.getContextPath()+"/pagefunciones/siguiente.jsp");
 		
@@ -66,7 +67,7 @@ public class Login extends HttpServlet{
 	
 			req.getSession().setAttribute("email", req.getParameter("email"));
 			
-			req.setAttribute("msg","No esta acticado <a href=\"http://localhost:8088/proyectoFinalEntrada/pages/codigoActivacion.jsp\">Activa mi cuenta</a>");
+			req.setAttribute("msg","No esta acticado <a href=\"http://localhost:8088/proyectoFinalEntrada/activacuenta\">Activa mi cuenta</a>");
 			
 			req.getRequestDispatcher("pages/login.jsp").forward(req, resp);
 			
@@ -103,17 +104,21 @@ public class Login extends HttpServlet{
 	
 	
 	
-	public void crearTokenyCookie( HttpServletResponse resp,String email, int contrasena,ControladorLogin login) {
+	public String crearTokenyCookie( HttpServletResponse resp,String email, int contrasena,ControladorLogin login) {
 		
+		InfoTienda infotienda=login.buscarIdTienda(email);
 		
-		
-		String token=	JwtUtil.crearTokenWeb(email, contrasena, login.crearcola(),login.buscarIdTienda(email));
+		String token=	JwtUtil.crearTokenWeb(login.crearcola(login.cuenta_tienda.getId_tienda()),infotienda.id_tienda);
 		
 		Cookie cookie=new Cookie("token",token);
 		
 		resp.setContentType("text/html; charset=UTF-8");
 		
+		cookie.setMaxAge(60*60);
 		resp.addCookie(cookie);
+		
+		return infotienda.nombre;
+		
 	}
 	
 	

@@ -13,5 +13,9 @@ public class GeneraCodigo {
 		
 	}
 	
-	
+	public static String GeneraQRAleatoria() {
+		
+		return RandomStringUtils.randomAlphanumeric(20);
+		
+	}
 }

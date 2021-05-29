@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.filter.ComprobacionToken;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.manda.android.controlador.BuscaListaProductoUsuario;
@@ -27,16 +28,13 @@ public class MandarListaProductoUsuarioWeb extends HttpServlet
 	
 		
 		
-		String id_cola=req.getParameter("idcola");
+		int id_cola=ComprobacionToken.vertificaidColaToken(req);
 		String id_usuario=req.getParameter("idusuario");
 		
-
 	
-		BuscaListaProductoUsuario buscaListaProductoUsuario=new BuscaListaProductoUsuario(Integer.parseInt("1"),Integer.parseInt(id_usuario));
+		BuscaListaProductoUsuario buscaListaProductoUsuario=new BuscaListaProductoUsuario(id_cola,Integer.parseInt(id_usuario));
 		
 		
-		
-
 		ArrayList<ListaProducto> listaproductoaux=buscaListaProductoUsuario.buscar();
 		
 		// 调用GSON jar工具包封装好的toJson方法，可直接生成JSON字符串
@@ -53,7 +51,6 @@ public class MandarListaProductoUsuarioWeb extends HttpServlet
 		out.flush();
 		
 		out.close();
-		
 		
 	}
 	

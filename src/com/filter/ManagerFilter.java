@@ -3,13 +3,26 @@ package com.filter;
 import java.io.IOException;
 
 import javax.servlet.*;
+import javax.servlet.annotation.WebFilter;
+import javax.servlet.annotation.WebInitParam;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
-import oracle.net.aso.h;
+@WebFilter(filterName = "CharsetFilter",
+urlPatterns = 
+{"/qr",/*通配符（*）表示对所有的web资源进行拦截*/
+"/siguiente",
+"/listausuarioweb",
+"/manager/*",
+"/cargarmenu",
+"/pagefunciones/*"
+
+},
+initParams = {
+        @WebInitParam(name = "charset", value = "utf-8")/*这里可以放一些初始化的参数*/
+})
 
 public class ManagerFilter implements Filter{
-
-	
 
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
@@ -22,23 +35,41 @@ public class ManagerFilter implements Filter{
 			throws IOException, ServletException {
 		// TODO Auto-generated method stub
 		
-		
-	
-
 		HttpServletRequest httpServletRequest=(HttpServletRequest) request;
 		
-		int id_cola=ComprobacionToken.vertificaSihayToken(httpServletRequest);
+		HttpServletResponse httpServletResponse=(	HttpServletResponse )response;
+		
+		
+		String basePath=	httpServletRequest.getScheme()
+				+"://"
+				+	httpServletRequest.getServerName()
+				+":"
+				+	httpServletRequest.getServerPort()
+				+	httpServletRequest.getContextPath();
+		
+		
+		
+		
+		int id_tienda=ComprobacionToken.vertificaIdTienda(httpServletRequest);
 		
 		// aun no ha hecho su login
-		if(id_cola==0) {
+		if(id_tienda==0) {
 			
-			httpServletRequest.getRequestDispatcher("/pages/login.jsp").forward(request, response);
+	
 			
+			httpServletResponse.sendRedirect(basePath+"/pages/login.jsp");
+		
 			
 			// ya ha hehco su login
 		}else {
+			/*if(httpServletRequest.getSession()==null) {
+				
+				httpServletRequest.getRequestDispatcher("/entrada").forward(request, response);
+				
+			}else {*/
+				chain.doFilter(request, response);
+			//}
 		
-			chain.doFilter(request, response);
 			
 		}
 		

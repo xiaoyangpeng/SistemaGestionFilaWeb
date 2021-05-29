@@ -105,7 +105,7 @@
                 
               <div class="caja_olvidar">
 									
-					<a id="olvidar" href="olvidar.jsp">¿Olvidaste tu contraseña?</a>
+					<a id="olvidar" href="pages/recuperacontrasena.jsp">¿Olvidaste tu contraseña?</a>
 								
 			</div>
          	<div class="form_login">

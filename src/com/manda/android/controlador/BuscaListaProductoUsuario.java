@@ -2,7 +2,6 @@ package com.manda.android.controlador;
 
 import java.util.ArrayList;
 
-import com.sun.org.apache.regexp.internal.recompile;
 
 import dao.utils.BaseDao;
 import variables.VariableSqlWEB;

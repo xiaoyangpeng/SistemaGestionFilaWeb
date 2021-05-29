@@ -18,7 +18,7 @@ public class Tienda_entrada {
 	public String email;
 	
 	
-	public String horario;
+	public int horario;
 
 
 	public String getNombre() {
@@ -84,12 +84,12 @@ public class Tienda_entrada {
 	}
 
 
-	public String getHorario() {
+	public int getHorario() {
 		return horario;
 	}
 
 
-	public void setHorario(String horario) {
+	public void setHorario(int horario) {
 		this.horario = horario;
 	}
 	

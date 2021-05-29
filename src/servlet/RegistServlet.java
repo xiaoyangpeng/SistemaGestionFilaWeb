@@ -17,7 +17,7 @@ import static com.google.code.kaptcha.Constants.KAPTCHA_SESSION_KEY;;
 public class RegistServlet extends HttpServlet{
 
 	
-	String nada;
+
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
@@ -32,7 +32,9 @@ public class RegistServlet extends HttpServlet{
 		req.getSession().removeAttribute(KAPTCHA_SESSION_KEY);
 
 		
+	
 		//cuanto codigo es correcto
+	
 		if(codigoPrubea.compareToIgnoreCase(codigoPruebaAux)==0) {
 			
 			Tienda_entrada tienda=new Tienda_entrada();
@@ -46,9 +48,12 @@ public class RegistServlet extends HttpServlet{
 						tienda.nombre=req.getParameter("nombre");
 		
 						tienda.contrasena=req.getParameter("password").hashCode();
+					
 						tienda.telefono=Integer.parseInt(req.getParameter("telefono"));
+					
 						tienda.direccion=req.getParameter("direccion");
 						tienda.categoria=req.getParameter("categoria");
+						tienda.horario=Integer.parseInt(req.getParameter("horario"));
 				
 						contoControladorSign.andairInformacionTienda();
 						
@@ -70,16 +75,7 @@ public class RegistServlet extends HttpServlet{
 		}
 		
 	
-	
-		
-	
 
-		// 到时候再实验id 就是 在 js 里面 的	arrys 关于开门时间的
-			/*String id = req.getParameter("id");
-		
-			System.out.println(id);*/
-		
-		//req.getRequestDispatcher("/pages/registrar.jsp").forward(req, resp);
 	
 	}
 	

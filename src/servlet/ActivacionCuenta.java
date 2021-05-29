@@ -18,9 +18,7 @@ public class ActivacionCuenta extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 
-		
 
-		
 	String codigoActivacion=req.getParameter("codigoActivacion");
 		
 

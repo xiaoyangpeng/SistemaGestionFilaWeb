@@ -1,6 +1,7 @@
 
 
 
+<%@page import="com.fasterxml.jackson.annotation.JsonInclude.Include"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
@@ -33,18 +34,20 @@
 		
 		<link type="text/css" rel="stylesheet" href="cssfunciones/siguiente.css" />
 		
-		
-			<script type="text/javascript" src="funcionesjsscript/siguiente.js"></script>
+		<script type="text/javascript" src="script/jquery-3.5.1.js"></script>
+		<script type="text/javascript" src="funcionesjsscript/siguiente.js"></script>
 	
+		<script src="funcionesjsscript/myPagination.js"></script>
 	
 </head>
 <body>
 
+	
 
+		<jsp:include page="botones.jsp"/>
+		
 
-		<%@include file="/pagefunciones/botones.jsp" %>
-
-
+	
 	<div class="centro">
 		
 
@@ -80,10 +83,13 @@
 							<span id="totalprecio"></span>
 					</div>
 
-			<div id="turnoActual"> Turno Actual
+			<div id="turnoActual"> Turno Actual :
 			&nbsp; &nbsp; 
-				<span id="miTurno"></span>
 			
+					<span id="miTurno"></span>
+					
+					<span id="turnoEnfila"></span>
+					
 			</div>
 			
 			<div class="turno">
@@ -102,11 +108,14 @@
 			
 			</div>
 		
+		
+		<div id="pagination" class="pagination"></div>
+		
 			
 			<div class="boton">
 			
 	
-				<button class="btn btn-danger btn-block"  type="submit" >Anterior</button >   
+	 
 
 		
 				<button class="btn btn-danger btn-block"  type="submit" id="btn_siguiente" onclick="mandasiguiente()">Siguiente</button >   

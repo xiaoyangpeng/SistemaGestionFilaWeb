@@ -1,7 +1,10 @@
 package funciones.controlador.productos.dao;
 
+import java.io.File;
 import java.math.BigDecimal;
 import java.util.List;
+
+import org.apache.commons.fileupload.FileItem;
 
 import com.manda.android.controlador.Comida;
 import com.manda.android.controlador.Mercancia;
@@ -9,10 +12,13 @@ import com.manda.android.controlador.Productos;
 import com.manda.android.controlador.Servicio;
 
 import dao.utils.BaseDao;
+import variables.DirectorioImagen;
 
 public class ProductoDaoImpl extends BaseDao implements ProdcutoDao {
 
 			
+	
+	
 			@Override
 			public int addProdducto(Productos producto) {
 				
@@ -65,7 +71,7 @@ public class ProductoDaoImpl extends BaseDao implements ProdcutoDao {
 			}
 
 			@Override
-			public int addComida(Comida comida) {
+			public int addComida(Comida comida,FileItem fileFoto) {
 				// TODO Auto-generated method stub
 				
 				
@@ -74,11 +80,17 @@ public class ProductoDaoImpl extends BaseDao implements ProdcutoDao {
 				
 				String sql="INSERT INTO COMIDA (ID_PRODUCTO, URL_FOTO, INGREDIENTE) VALUES (?, ?, ?)";
 				
-				return update(sql,id_producto,comida.getUrl_foto(),comida.getIngrediente());
+				String directorio=DirectorioImagen.DIRECOTRIO_IMAGE+"\\comida\\"+id_producto.toString()+".png";
+				
+				copiarFoto(fileFoto, directorio);
+				
+				return update(sql,id_producto,
+						directorio
+						,comida.getIngrediente());
 			}
 
 			@Override
-			public int addMercancia(Mercancia mercancia) {
+			public int addMercancia(Mercancia mercancia,FileItem fileFoto) {
 				// TODO Auto-generated method stub
 				
 				BigDecimal id_producto=(BigDecimal) queryForUnValor("select max(id_producto) from producto", null);
@@ -86,7 +98,11 @@ public class ProductoDaoImpl extends BaseDao implements ProdcutoDao {
 		
 						+ "VALUES (?,?,?,?,?)";
 				
-				return update(sql,id_producto,mercancia.getUrl_foto(),mercancia.getDescripcion(),mercancia.getStock()
+				String directorio=	DirectorioImagen.DIRECOTRIO_IMAGE+"\\mercancia\\"+id_producto.toString()+".png";
+				
+				copiarFoto(fileFoto, directorio);
+				
+				return update(sql,id_producto,directorio,mercancia.getDescripcion(),mercancia.getStock()
 						,mercancia.getCodigo());
 			}
 
@@ -103,24 +119,33 @@ public class ProductoDaoImpl extends BaseDao implements ProdcutoDao {
 			}
 
 			@Override
-			public int updateComida(Comida comida) {
+			public int updateComida(Comida comida,FileItem fileFoto) {
 				// TODO Auto-generated method stub
 				
 				String sql="UPDATE COMIDA SET INGREDIENTE = ?, URL_foto=?"
 						+ "	WHERE id_producto=?";
 		
-				return update(sql, comida.getIngrediente(),comida.getUrl_foto(),comida.getId_producto());
+				
+				String directorio=	DirectorioImagen.DIRECOTRIO_IMAGE+"\\comida\\"+String.valueOf(comida.getId_producto())+".png";
+				
+				
+				copiarFoto(fileFoto, directorio);	
+				
+				return update(sql, comida.getIngrediente(),directorio,comida.getId_producto());
 			}
 
 			@Override
-			public int updateMercancia(Mercancia mercancia) {
+			public int updateMercancia(Mercancia mercancia,FileItem fileFoto) {
 		
 				String sql=
 				"UPDATE MERCANCIA SET URL_FOTO = ?, DESCRIPCION = ?, STOCK = ?, CODIGO = ?"
 						+ " WHERE id_producto=?";
 					
-		
-				return update(sql, mercancia.getUrl_foto(),mercancia.getDescripcion(),mercancia.getStock(),
+				String directorio=	DirectorioImagen.DIRECOTRIO_IMAGE+"\\mercancia\\"+String.valueOf(mercancia.getId_producto())+".png";
+				
+				copiarFoto(fileFoto, directorio);
+				
+				return update(sql, directorio,mercancia.getDescripcion(),mercancia.getStock(),
 						mercancia.getCodigo(),mercancia.getId_producto());
 			}
 
@@ -135,6 +160,19 @@ public class ProductoDaoImpl extends BaseDao implements ProdcutoDao {
 			}
 
 		
+			
+		private void copiarFoto(FileItem fileFoto,String directorio) {
+				
+				if(fileFoto.getSize()!=0) {
+					try {
+						fileFoto.write(new File(directorio));
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+				
+			}
 				
 				
 }

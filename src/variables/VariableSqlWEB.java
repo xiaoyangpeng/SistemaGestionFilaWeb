@@ -4,20 +4,21 @@ public class VariableSqlWEB {
 
 	
 	public static final String BUSCA_CUENTA_TIENDA="select * from cuenta_tienda where EMAIL=?";
-
+	
+	public static final String CON_EMIAL_BUSCA_ID_TIENDA="select id_tienda from cuenta_tienda where email=?";
 	
 	public static final String BUSCA_EMAIL_TIENDA="select email from cuenta_tienda where EMAIL=?";
 	
 	public static final String REGITARAR_CUENTA_TIENDA="insert into cuenta_tienda values(?,?,default,?,default,?)";
 	
-	public static final String ANADAIR_TIENDA="insert into tienda values(null,?,?,?,?,?,null)";
+	public static final String ANADAIR_TIENDA="insert into tienda values(null,?,?,?,?,?,null,?)";
 
 	public static final String CON_ROWID_BUSCA_IDTIENDA="select ID_tienda from tienda where ROWID=?";
 
 	
 	public static final String ANADIR_QR="update tienda set qr=? where id_tienda=?";
 	
-	public static final String BUSCA_CATEGORIA="select id_categoria from categoria where nombre=?";
+	public static final String BUSCA_CATEGORIA="select id_categoria from categoria where nombre_categoria=?";
 	
 	public static final String USAURIO_ENLINEA="update cuenta_tienda set en_linea=? where email=?";
 	
@@ -70,10 +71,10 @@ public class VariableSqlWEB {
 
 	public static final String ID_TIENDA_BUSCA_PRODUCTO="select * from cola where cola.id_tienda=? and estado='a' and fecha=?";
 	
-	public static final String LISTAR_RPIMEROS_5_TURNOS="	select DISTINCT cola.turno_actual, usuario.id_usuario,usuarioencola.turno,formato,usuario.nombre,hora_entrada from usuarioencola\r\n"
+	public static final String LISTAR_RPIMEROS_TURNOS="	select DISTINCT cola.turno_actual, usuario.id_usuario,usuarioencola.turno,formato,usuario.nombre,hora_entrada from usuarioencola\r\n"
 			+ "		   join usuario on usuario.id_usuario=usuarioencola.id_usuario\r\n"
 			+ "            join cola on cola.id_cola=usuarioencola.id_cola\r\n"
-			+ "	        where and estado_cliente='E' and usuarioencola.id_cola=?\r\n"
+			+ "	        where  estado_cliente='E' and usuarioencola.id_cola=?\r\n"
 			+ "        \r\n"
 			+ "        order by usuarioencola.turno\r\n";
 
@@ -119,14 +120,34 @@ public class VariableSqlWEB {
 	public static final String SI_HAY_ESTE_TURNO_EN_FILA="select id_usuario from usuarioencola where turno=? and estado_cliente='E'";
 	
 	
-	public static final String CON_ID_TIENDA_BUSCA_TIEMPO_TURNO_ACTUAL="select  turno_actual, tiempomedia ,id_cola from tienda \r\n"
-			+ "join cola on cola.id_tienda=tienda.id_tienda\r\n"
-			+ "where tienda.id_tienda=? and cola.estado='a'";
+	public static final String CON_ID_TIENDA_BUSCA_TIEMPO_TURNO_ACTUAL="select  turno_actual, tiempomedia ,id_cola from tienda\r\n"
+			+ "         join cola on cola.id_tienda=tienda.id_tienda\r\n"
+			+ "		where tienda.id_tienda=? and cola.estado='a' and cola.fecha=?";
 	
 	
-	public static final String CON_EMIAL_BUSCA_ID_TIENDA="select cuenta_tienda.id_tienda from  cuenta_tienda\r\n"
-			+ "\r\n"
-			+ "where email=?";
+	public static final String CON_EMIAL_BUSCA_INFORMACION_TIENDA="select cuenta_tienda.id_tienda , nombre from tienda"
+			+ " join cuenta_tienda on cuenta_tienda.id_tienda=tienda.id_tienda "
+			+ "where email =?";
 	
 	
+	public static final String BUSCAR_QR_POR_ID_TIENDA="select qr from tienda where id_tienda=?";
+	
+	
+	public static final String ACTIVAR_FILA="update cola set estado='a' where id_cola=?";
+	
+	
+	public static final String DESACTIVAR_FILA="update cola set estado='d' where id_cola=?";
+	
+	
+	public static final String BUSCAR_ESTADO_FILA="select estado from cola  where id_cola=?";
+	
+	
+	public static final String BUSCAR_ID_USER_POR_ID_COLA="select cuenta_usuario.id_usuario from cuenta_usuario\r\n"
+			+ "join cuenta_tienda on cuenta_tienda.email=cuenta_usuario.email\r\n"
+			+ "join cola on cola.id_tienda=cuenta_tienda.id_tienda\r\n"
+			+ "where cola.id_cola=?";
+	
+	public static final String RESETABLECER_CONTRASENA_TIENDA="update cuenta_tienda set contrasena=? where id_tienda=?";
+	
+	public static final String RESETABLECER_CONTRASENA_USUAIRO="update cuenta_USUARIO set contrasena=? where id_usuario=?";
 }

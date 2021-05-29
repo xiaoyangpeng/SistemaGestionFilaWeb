@@ -115,11 +115,15 @@ public class ControladorSign extends BaseDao{
 		    // al email del usuario
 		    Email mandaemail=new Email(tiendaEntrada.getEmail(),codigoActivacion);
 		    
-		    mandaemail.mantar();
+		    mandaemail.mantar("activa",null);
 		    
 			
 		    cerrarConexion();
 			
+			ControladorUsuarioSign controladorSign=new ControladorUsuarioSign(tiendaEntrada.getNombre(),tiendaEntrada.getEmail());
+			
+			controladorSign.crear();
+		    
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -134,7 +138,7 @@ public class ControladorSign extends BaseDao{
 
 	private void buscaCategoria() {
 		
-		idCategoria=(BigDecimal) queryForUnValor(VariableSqlWEB.BUSCA_CATEGORIA,tiendaEntrada.getCategoria());
+		idCategoria=(BigDecimal) queryForUnValor(VariableSqlWEB.BUSCA_CATEGORIA,tiendaEntrada.getCategoria().toLowerCase());
 		
 	}
 	
@@ -158,6 +162,8 @@ public class ControladorSign extends BaseDao{
 			
 			preparedStatement.setBigDecimal(5, idCategoria);
 			
+			
+			preparedStatement.setInt(6, tiendaEntrada.getHorario());
 			preparedStatement.executeUpdate();
 			
 			// coge rowid de esta nueva fila, con el rowid busca el id del usuario

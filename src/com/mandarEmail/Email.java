@@ -23,6 +23,8 @@ public class Email {
 	private String emailUsuario;
 	private String codigoActivacion;
 	 
+	
+	private String texto;
 	public Email( String emailUsuario,String codigoActivacion) {
 			// TODO Auto-generated constructor stub
 
@@ -31,7 +33,14 @@ public class Email {
 		
 	}
 	 
-	 
+	
+	
+	public Email(String email) {
+		
+		
+		this.emailUsuario=email;
+		
+	}
 	private void generarEmail() throws MessagingException {
 
   
@@ -59,8 +68,8 @@ public class Email {
             @Override
             protected PasswordAuthentication getPasswordAuthentication() {
             	
-            	// pone el nombre completo de correro , y su contraseña 
-            	// (en este caso para correo del 163 es el codigo de autorización )
+            	// pone el nombre completo de correro , y su contrase帽a 
+            	// (en este caso para correo del 163 es el codigo de autorizaci贸n )
                 return new PasswordAuthentication("queueproyectodam@163.com" , "QLOEAXCEBJNEZBSC");
             }									
         });
@@ -77,8 +86,8 @@ public class Email {
 		
 
         // conectar al servidor
-    	// pone el nombre completo de correro , y su contrase帽a 
-    	// (en este caso para correo del 163 es el c贸digo de autorizaci贸n )
+    	// pone el nombre completo de correro , y su contrase甯絘 
+    	// (en este caso para correo del 163 es el c璐竏igo de autorizaci璐竛 )
         transport.connect("smtp.163.com","queueproyectodam@163.com" , "QLOEAXCEBJNEZBSC");
 
 
@@ -96,7 +105,7 @@ public class Email {
 
 	
 	        // titulo
-	        mimeMessage.setSubject("Verifica tu nueva cuenta de Queue");
+	        mimeMessage.setSubject("Verifica tu  cuenta de Queue");
 	       
 	
 		// crear objeto para poner texto
@@ -105,19 +114,12 @@ public class Email {
       
         
         // pone su texto ,  en formato "text/html;charset=UTF-8" 
-        // evita el mojibake ( es un error que ocurre cuando un programa es incapaz de reconocer un car谩cter)
+        // evita el mojibake ( es un error que ocurre cuando un programa es incapaz de reconocer un car璋ヽter)
 	
         
         
-        
-        String texto="Introduce el siguiente c��digo para activar su cuenta:<br>"
-        			+"<div  style =\"font-size: 20px;color :red \" > "+codigoActivacion+"</div><br>"
-        			+"No compartas este c��digo con nadie.<br>"
-        			+"<br>"
-        			+"<br>"
-        			+"<b>Gracias por su colaboraci��n. Esperamos volver a verte pronto.";
-        
-        
+
+      
 
 			text.setContent(texto,"text/html;charset=UTF-8");
 			
@@ -143,9 +145,20 @@ public class Email {
 	}
 	
 	
-	public void mantar() {
+	public void mantar(String que,String url) {
 		
-	 /*   try {
+		
+		
+		if(que.equals("activa")) {
+			
+			textoActiva();
+		}else {
+			
+			
+			textoRecupera(url);
+		}
+		
+	  try {
 	    
 	    	
 	    	generarEmail();
@@ -160,8 +173,35 @@ public class Email {
 		} catch (MessagingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}*/
+		}
 			
+	}
+	
+	
+	private void textoActiva() {
+		
+        
+		texto="Introduce el siguiente código para activar su cuenta:<br>"
+        			+"<div  style =\"font-size: 20px;color :red \" > "+codigoActivacion+"</div><br>"
+        			+"No compartas este código con nadie.<br>"
+        			+"<br>"
+        			+"<br>"
+        			+"<b>Gracias por su colaboración. Esperamos volver a verte pronto.";
+		
+	}
+	
+	private void textoRecupera(String url) {
+		
+	     
+			texto="	Pincha siguiente enlace para reestablecer su contraseña:<br>"
+	        			+"<div  style =\"font-size: 20px;color :red \" > "
+	        			+"<a href=\""+url+"\">Recupera Mi Contraseña</a>"
+	        			+"</div><br>"
+	        			+"Solo es valido dentro de 10 minutos.<br>"
+	        			+"<br>"
+	        			+"<br>"
+	        			+"<b>Gracias por su colaboración. Esperamos volver a verte pronto.";
+		
 	}
 	
 	

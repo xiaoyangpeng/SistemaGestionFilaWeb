@@ -2,7 +2,6 @@ package com.manda.android.controlador.buscatienda;
 
 import java.util.ArrayList;
 
-import com.sun.org.apache.regexp.internal.recompile;
 
 import dao.utils.BaseDao;
 import variables.VariableSqlWEB;
@@ -18,8 +17,8 @@ public class ControladorBuscarTienda extends BaseDao{
 	}
 	
 	
-	/*
-	public static void main(String[] args) {
+	
+	/*public static void main(String[] args) {
 	
 		
 		ControladorBuscarTienda tienda=new ControladorBuscarTienda("a");

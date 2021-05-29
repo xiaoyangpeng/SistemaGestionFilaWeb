@@ -11,6 +11,7 @@ import java.sql.Types;
 
 import dao.utils.BaseDao;
 import dao.utils.JdbcUtils;
+import variables.FechaYhora;
 import variables.VariableSqlWEB;
 
 
@@ -45,7 +46,7 @@ public class ControladorInfTienda extends BaseDao {
 	
 	public void turnoActualTiempo() {
 		
-		remota=queryForOne(Tiendaremota.class,VariableSqlWEB.CON_ID_TIENDA_BUSCA_TIEMPO_TURNO_ACTUAL, id_tienda);
+		remota=queryForOne(Tiendaremota.class,VariableSqlWEB.CON_ID_TIENDA_BUSCA_TIEMPO_TURNO_ACTUAL, id_tienda,FechaYhora.fechaHoy());
 		
 		ultimoTurno();
 			
@@ -72,6 +73,8 @@ public class ControladorInfTienda extends BaseDao {
 
 			
 			remota.setUltimo_turno(call.getInt(2));
+			
+		
 	
 			call.close();
 

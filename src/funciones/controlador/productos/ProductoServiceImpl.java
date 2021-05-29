@@ -2,6 +2,8 @@ package funciones.controlador.productos;
 
 import java.util.List;
 
+import org.apache.commons.fileupload.FileItem;
+
 import com.manda.android.controlador.Comida;
 import com.manda.android.controlador.Mercancia;
 import com.manda.android.controlador.Productos;
@@ -50,15 +52,15 @@ public class ProductoServiceImpl implements ProducotService {
 	}
 
 	@Override
-	public int addComida(Comida comida) {
+	public int addComida(Comida comida,FileItem fileFoto) {
 		// TODO Auto-generated method stub
-		return productoDao.addComida(comida);
+		return productoDao.addComida(comida,fileFoto);
 	}
 
 	@Override
-	public int addMercancia(Mercancia mercancia) {
+	public int addMercancia(Mercancia mercancia,FileItem fileFoto) {
 		// TODO Auto-generated method stub
-		return productoDao.addMercancia(mercancia);
+		return productoDao.addMercancia(mercancia,fileFoto);
 	}
 
 	@Override
@@ -68,15 +70,15 @@ public class ProductoServiceImpl implements ProducotService {
 	}
 
 	@Override
-	public int updateComida(Comida comida) {
+	public int updateComida(Comida comida,FileItem fileFoto) {
 		// TODO Auto-generated method stub
-		return productoDao.updateComida(comida);
+		return productoDao.updateComida(comida,fileFoto);
 	}
 
 	@Override
-	public int updateMercancia(Mercancia mercancia) {
+	public int updateMercancia(Mercancia mercancia,FileItem fileFoto) {
 		// TODO Auto-generated method stub
-		return productoDao.updateMercancia(mercancia);
+		return productoDao.updateMercancia(mercancia,fileFoto);
 	}
 
 	@Override

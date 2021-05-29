@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Añadir modificar Productos</title>
 
 <%   // para coger directorio  del proyecto
 		String basePath=request.getScheme()
@@ -38,34 +38,21 @@
 <body>
 
 
-	<div id="siguiente_header"  >
-			<a href="/proyectoFinalEntrada/pagefunciones/siguiente.jsp"><img class="logo_img" alt="" src="img/logo.png" ></a>
-		</div>
-
-		<div class="botones">
 		
-				<a href="/proyectoFinalEntrada/pagefunciones/siguiente.jsp"><span class="boton_dentro" id="siguiente">Siguiente</span></a>
-				<a href="visualizar.html"><span class="boton_dentro" id="visualizar">Visualizar Fila</span></a>
-				<a href="/proyectoFinalEntrada/manager/productoservlet?action=list"><span class="boton_dentro" id="addupdate">Anadir modificar producto</span></a>
-				<a href="/proyectoFinalEntrada/pagefunciones/activafila.html"><span class="boton_dentro" id="activafila">Activar/Desactivar Fila</span></a>
-				<a href="darnumero.html"><span class="boton_dentro" id="darnumero">Dar numero</span></a>
-				<a href="generaqr.html"><span class="boton_dentro" id="generaqr">Genera QR</span></a>
-				
-				<span class="boton_out_cuenta" >Salir </span>
-		</div>
-
-
+		<jsp:include page="botones.jsp"/>
+		
+		
 			<div class="centro">
 			
 			
 			
 					<div class="tabla">
 			
-					<form action="manager/productoservlet" method="get">
+					<form action="manager/addproducto" method="post" enctype="multipart/form-data">
 					
-							<input type="hidden" name="action" value="${param.method }" />
+								<input type="hidden" name="action" value="${param.method}" />
 								<input type="hidden" name="id" value="${ requestScope.producto.getIdentificacion()}" />
-						<input type="hidden" name="idtienda" value="${ requestScope.producto.id_tienda}" />
+								<input type="hidden" name="idtienda" value="${ requestScope.producto.id_tienda}" />
 					
 									Nombre
 				
@@ -107,9 +94,7 @@
 					</textarea>
 							</div>
 						
-								<input type="file" id="foto" placeholder="Eligefoto" /> 
-				
-				
+								<input type="file" id="foto" name="foto" />
 				
 							<div id="divmercancia" >
 							
@@ -140,7 +125,37 @@
 							
 				</div>
 			
+				
+				<div class="imagen">
+				
 					
+					<c:if test="${not empty requestScope.comida}">	
+					
+							<img id="img" src="imagenes/${ requestScope.producto.categoria}/${ requestScope.producto.getIdentificacion()}.png"/>
+				
+					
+						
+					</c:if>
+				
+				
+					<c:if test="${not empty requestScope.mercancia }">	
+					
+							<img  id="img"  src="imagenes/${ requestScope.producto.categoria}/${ requestScope.producto.getIdentificacion()}.png"/>
+							
+
+					</c:if>
+					
+					
+						
+					<c:if test="${param.method == 'add' }">	
+					
+							<img  id="img" />
+							
+
+					</c:if>
+					
+				
+				</div>
 			
 			
 				

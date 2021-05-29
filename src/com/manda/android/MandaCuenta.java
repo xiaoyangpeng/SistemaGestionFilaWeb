@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.io.IOUtils;
 
-import sun.nio.ch.IOUtil;
 
 public class MandaCuenta extends HttpServlet{
 	
@@ -25,23 +24,30 @@ public class MandaCuenta extends HttpServlet{
 		
 		String id_prodcuto=req.getParameter("idproducto");
 		
-		
+		String categoria=req.getParameter("categoria");
 
-		String dowloadFile="22.png";
+
+		
+		String dowloadFile=categoria+"/"+id_prodcuto+".png";
 		
 		
 		ServletContext servletContext=getServletContext();
 		
-		
 		// decir al 客户端 tipo de datos que va ha devolver 
-		String tipoDeArchivo=servletContext.getMimeType("/file/"+dowloadFile);
+		String tipoDeArchivo=servletContext.getMimeType("/imagenes/"+dowloadFile);
 		
 		resp.setContentType(tipoDeArchivo);
 		
 		// 用来下载
 		//resp.setHeader("Content-Disposition", "attament ;filename="+dowloadFile);
 		
-		InputStream input=servletContext.getResourceAsStream("/file/"+dowloadFile);
+		InputStream input=servletContext.getResourceAsStream("/imagenes/"+dowloadFile);
+		
+		
+		if(input==null) {
+			
+			input=servletContext.getResourceAsStream("/imagenes/logo.png");
+		}
 		
 		OutputStream outputStream=resp.getOutputStream();
 		

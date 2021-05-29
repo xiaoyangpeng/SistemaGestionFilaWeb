@@ -28,6 +28,8 @@ public class MandaTiendaRemota  extends HttpServlet
 		
 		String id_tienda=req.getParameter("idtienda");
 
+		
+
 		ControladorInfTienda remota=new ControladorInfTienda(Integer.parseInt(id_tienda));
 		
 		remota.turnoActualTiempo();
@@ -36,6 +38,8 @@ public class MandaTiendaRemota  extends HttpServlet
 		String json=	CrearJson.crearJson(remota.getRemota());
 		
 	
+		
+		System.out.println(json);
 		resp.setContentType("application/json;charset=UTF-8");
 		resp.setCharacterEncoding("utf-8");
 		PrintWriter out = new PrintWriter(resp.getOutputStream());

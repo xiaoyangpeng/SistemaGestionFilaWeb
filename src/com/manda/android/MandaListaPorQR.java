@@ -33,6 +33,7 @@ public class MandaListaPorQR extends HttpServlet{
 		
 		String nombreProducto=req.getParameter("nombreproducto");
 
+		nombreProducto=nombreProducto.toLowerCase();
 		
 		if(id_cola!=null&&id_usuario!=null&&nombreProducto!=null) {
 			

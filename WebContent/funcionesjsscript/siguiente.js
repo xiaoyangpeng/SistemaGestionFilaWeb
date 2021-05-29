@@ -4,12 +4,15 @@
 		  	window.onload=function(){
 		
 		cargarPagina();
-		
-		
+	
 		window.setInterval("cargarPagina()",10000)
+		
+		
+
+		
 	}
 		
-	
+	 	 var data;
 	
 		 var req = new XMLHttpRequest();
 		 
@@ -23,7 +26,7 @@
 		        //如果设置数据传送方式为post，则必须设置请求头信息
       
         //设置回调函数，当前操作完成后进行的操作
-       	req.onreadystatechange = callback;
+       		req.onreadystatechange = callback;
  
         //Ajax请求发送的数据不是表单，需要拼接数据，格式和get方式一样
         
@@ -57,45 +60,92 @@
 		            //获取后台返回的数据
 		            var response = req.responseText;
 		            
-		        
-		            var data=JSON.parse(response)
+		           	data=JSON.parse(response)
 		
 		            var tbody = document.getElementById('tbMain');  
 		        	
 		            var miturno=document.getElementById('miTurno');  
 		    
 		            
-		      	  var parNode =  document.getElementById("tableturno");
+	      		  var parNode =  document.getElementById("tableturno");
 		     
-		         var filaTotal= tbody.getElementsByTagName("tr").length;
-		            	
+		       	  var filaTotal= tbody.getElementsByTagName("tr").length;
+		           
+		       	  
+		       	  var totalturno=document.getElementById("turnoEnfila");
 		        
-		         if(filaTotal>0){
-		
-		         for(var ii=0;ii<filaTotal;ii++){
-		        	 
-		        		tbody.deleteRow(0);
-			     
-			        	 
-	        		}
-		         
-		        }
-		   
-		         
-		         limpiarListaProducto();
-		 
+				limpiarListaFilas();
+		      
 		        
-				 if(data.length!=0){
+		 if(data.length!=0){
 					 
 				 	
-				      miturno.innerHTML=data[0].turno_actual;
+			      miturno.innerHTML=data[0].turno_actual;
+				    totalturno.innerHTML="Turno total : "+(data.length+1);
+			      
+	      			crearPrimerpagina(tbody);
+		       
+			      
+	
+				      var totalpagina;
 				      
-		             for(var i = 0;i < data.length; i++){ //遍历一下json数据  
-		            	  var trow = getDataRow(data[i]); //定义一个方法,返回tr数据  
-		            	  tbody.appendChild(trow);  
-		            	}  
+				      // comprobar que pagina es entero o no
+				      if(data.length%4==0){
+				      	
+				      	totalpagina=parseInt(data.length/4);
+				      	
+				      }else{
+				      	
+				      	totalpagina=parseInt(data.length/4)+1;
+				      }
+				      
+				      
+				      
+	            	 new myPagination({
+						        id: 'pagination',
+						        curPage:1, //初始页码
+						        pageTotal: totalpagina, //总页数
+								pageAmount: 4,  //每页多少条
+						        dataTotal: 500, //总共多少条数据
+								pageSize: 5, //可选,分页个数
+						        showPageTotalFlag:true, //是否显示数据统计
+						        showSkipInputFlag:true, //是否支持跳转
+						        getPage: function (page) {
+						        	
+						        	
+						           //获取当前页数
+						  
+				   	  limpiarListaFilas();
+						    
+					        if(page==1){
+					        		
+					        		crearPrimerpagina(tbody);
+					        }
+					        
+					        
+					        else if(page<totalpagina){
+					        
+					        	// cuando no es ultima pagina no primero pagina 
+					        	
+					        	crearPage((4*(page-1)),(4*page),tbody);
+		
+					        }
+					        
+					        
+					        else{
+					        	
+					        	// cuando el ultimia pagina
+					        	crearPage((4*(page-1)), data.length,tbody);
+					        
+					        }
+				
+					       
+					        }
+				    })	
+				                	
 				 }else{
 					 miturno.innerHTML="No queda Nadie En la fila";
+					  totalturno.innerHTML="";
 				 }
 		        
 		        }
@@ -136,7 +186,7 @@
 	    	     var bt =document.createElement("button");           //createElement生成button对象
 			     bt.innerHTML = 'Información producto'; 
 			     bt.onclick = function () {                          //绑定点击事件
-			    	 reqMandaLista.open("GET", "/proyectoFinalEntrada/listausuarioweb?idcola="+h.id_cola+"&idusuario="+h.id_usuario, true);
+			    	 reqMandaLista.open("GET", "/proyectoFinalEntrada/listausuarioweb?idusuario="+h.id_usuario, true);
 		  		        //如果设置数据传送方式为post，则必须设置请求头信息
 		  		      
 		  		        //设置回调函数，当前操作完成后进行的操作
@@ -152,7 +202,7 @@
 		    
 		    
 		    
-		    
+		    // limpar filas de productos
 		    function limpiarListaProducto(){
 		    	
 
@@ -173,12 +223,34 @@
 		    }
 		    
 		    
-		    var dataLista;
+		    function limpiarListaFilas(){
+		    	
+		    	
+	            var tbody = document.getElementById('tbMain');  
+		    	
+		    	 var filaTotal= tbody.getElementsByTagName("tr").length;
+		    	 
+	    	    if(filaTotal>0){
+		
+		         for(var ii=0;ii<filaTotal;ii++){
+		        	 
+		        		tbody.deleteRow(0);
+			     
+			        	 
+	        		}
+		         
+		        }
+		    	 
+		    	
+		    }
 		    
+		   
+		    var dataLista;
 		    
 		    var totalPrecio=0
 		    
 		    function callbacklista() {
+		    	
 			 	 totalPrecio=0;
 		    
 		    	  if (  reqMandaLista.readyState == 4 &&   reqMandaLista.status == 200) {
@@ -186,15 +258,12 @@
 		    		 	 var response = reqMandaLista.responseText;
 		    		  			
 		    		 	 var dataLista=JSON.parse(response)
-		    		 	 
-		    		 	 
+		    		 
 		    		 	var tbody = document.getElementById('tbLista');  
-		    	
-		    		 	 
+		    
 		    		 	 
 		    		 	 limpiarListaProducto();
 		    	
-		   
 				        for(var i = 0;i < dataLista.length; i++){ //遍历一下json数据  
 				             var trow = getDataProducto(dataLista[i]); //定义一个方法,返回tr数据  
 				             tbody.appendChild(trow);  
@@ -209,9 +278,6 @@
 				        
 		    	  }
 		    }
-		    
-		    
-		    
 		    
 		    
 		    function getDataProducto(h){
@@ -250,7 +316,32 @@
 		    }
 		    
 		    
+		    function crearPage(empieza,termina,tbody){
+		    	
+    			 for(var i = empieza;i < termina; i++){ //遍历一下json数据  
+        			  var trow = getDataRow(data[i]); //定义一个方法,返回tr数据  
+        	 			 tbody.appendChild(trow);  
+				}
+		    }
 		    
+		    
+		    
+		    function crearPrimerpagina(tbody){
+		    
+		    	// si persona en fila es mayor que 4 , primer pagina carga 4
+		    	
+    	   	  if(data.length>=4){
+					        	
+	            		crearPage(0,4,tbody);
+		            
+        		}else{
+					     // si es menor que 4, carga lo que hay   			
+	        			crearPage(0,data.length,tbody);
+		        		
+    			}
+				      
+		    	
+		    }
 		    
 		    
 		    

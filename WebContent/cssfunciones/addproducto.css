@@ -114,3 +114,24 @@ Button:hover{
 	  background-color: red;
 }
 
+
+.imagen{
+	
+	position: absolute;
+	
+	top:200px;
+	
+	left: 900px;
+	
+	
+}
+
+.imagen img{
+	
+	
+	width:400px;
+	
+	height:300px
+	
+}
+

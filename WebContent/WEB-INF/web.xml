@@ -257,27 +257,28 @@
   
   
   
+           <servlet>
+  
+			  	<servlet-name>AddProducto</servlet-name>
+			  	
+			  	<servlet-class>funciones.controlador.productos.AddProducto</servlet-class>
+  
+  </servlet>
+  
+  <servlet-mapping>
+  
+  
+  		<servlet-name>AddProducto</servlet-name>
+  			<url-pattern>/manager/addproducto</url-pattern>
+  </servlet-mapping>
+  
+  
+  
+  
+  
   
  
-  <filter>
-  
-  	<filter-name>ManagerFilter</filter-name>
-  
-  <filter-class>com.filter.ManagerFilter</filter-class>
-  </filter>
-  <filter-mapping>
-  
-  		<filter-name>ManagerFilter</filter-name>
-  		
-  		
-  				<url-pattern>/pages/codigoActivacion.jsp</url-pattern>
-  			<url-pattern>/pagefunciones/*</url-pattern>
-  		
 
- 			<url-pattern>		/proyectoFinalEntrada/entrada</url-pattern>
-  </filter-mapping>
-  
-  
   
   
 </web-app>

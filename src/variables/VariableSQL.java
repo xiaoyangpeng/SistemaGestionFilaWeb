@@ -42,7 +42,7 @@ public class VariableSQL {
 	
 	
 	
-	public static final String USUARIO_ANADIR_PRODUCTOS="insert into incorporar values(?,?,?,?)";
+	public static final String USUARIO_ANADIR_PRODUCTOS="insert into incorporar values(?,?,?,?,'E')";
 	
 	
 	public static final String BUSCAR_SI_EXISTE_IDPRODUCTO_CON_IDCOLA_IDUSUARIO="select id_usuario from incorporar where id_usuario=? and id_producto=? and id_cola=?";

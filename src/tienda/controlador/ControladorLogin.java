@@ -2,8 +2,12 @@ package tienda.controlador;
 
 
 import java.math.BigDecimal;
+import java.util.Calendar;
+import java.util.Date;
+import java.sql.Timestamp;
 
 import dao.implet.Cuenta_tienda;
+import dao.implet.InfoTienda;
 import dao.utils.BaseDao;
 import variables.FechaYhora;
 import variables.ResultadoLogin;
@@ -14,7 +18,7 @@ public class ControladorLogin extends BaseDao {
 	
 	
 
-	private Cuenta_tienda cuenta_tienda;
+	public Cuenta_tienda cuenta_tienda;
 
 
 	
@@ -119,23 +123,46 @@ public class ControladorLogin extends BaseDao {
 	
 	
 	
-	public synchronized void cambairCodigoActivacion(String email,String codigo) {
+	public  void cambairCodigoActivacion(String email,String codigo) {
 		
 		update(VariableSqlWEB.ACTUALIZAR_CODIGO_ACTIVACION,codigo,email);
 		
 	}
 	
+	public boolean buscaFehcaColaEsHoy(int id_cola) {
+		
+		
+	Timestamp  antes=(Timestamp )queryForUnValor("select fecha from cola where id_cola=?", id_cola);
 	
+	Date now = new Date();
+	Calendar cal1 = Calendar.getInstance();
+	cal1.setTime(now);
+	// 将时分秒,毫秒域清零
+	cal1.set(Calendar.HOUR_OF_DAY, 0);
+	cal1.set(Calendar.MINUTE, 0);
+	cal1.set(Calendar.SECOND, 0);
+	cal1.set(Calendar.MILLISECOND, 0);
+
+	Timestamp  today=new Timestamp(cal1.getTime().getTime());
+
+	return today.equals(antes);
+	}
 
 	
-	public  int  crearcola() {
+	/*public static void main(String[] args) {
+		ControladorLogin l=new ControladorLogin();
 		
-		BigDecimal hay=(BigDecimal)queryForUnValor(VariableSqlWEB.BUSCAR_SI_HAY_COLA_CRADA,cuenta_tienda.getId_tienda(),FechaYhora.fechaHoy() );
+		l.buscaFehcaColaEsHoy(221);
+	}*/
+	
+	public  int  crearcola(int id_tienda) {
+		
+		BigDecimal hay=(BigDecimal)queryForUnValor(VariableSqlWEB.BUSCAR_SI_HAY_COLA_CRADA,id_tienda,FechaYhora.fechaHoy() );
 		
 	
 		if(hay==null) {
 			
-				update(VariableSqlWEB.CREA_COLA_NUEVA,cuenta_tienda.getId_tienda(),FechaYhora.fechaHoy());
+				update(VariableSqlWEB.CREA_COLA_NUEVA,id_tienda,FechaYhora.fechaHoy());
 					
 				BigDecimal id_cola=(BigDecimal)	queryForUnValor(VariableSqlWEB.BUSCAR_UTLIMO_ID_COLA);
 				
@@ -148,15 +175,15 @@ public class ControladorLogin extends BaseDao {
 	}
 	
 	
-	public int buscarIdTienda(String email) {
-		
-		BigDecimal numero=(BigDecimal)queryForUnValor(VariableSqlWEB.CON_EMIAL_BUSCA_ID_TIENDA, email);
+	public InfoTienda buscarIdTienda(String email) {
 		
 		
-		return Integer.parseInt(numero.toString());
+
+		InfoTienda tienda=queryForOne(InfoTienda.class, VariableSqlWEB.CON_EMIAL_BUSCA_INFORMACION_TIENDA, email);
+		
+		return tienda;
 		
 		
 	}
-	
 	
 }

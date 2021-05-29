@@ -29,6 +29,7 @@ public class MandaInformacionTienda extends HttpServlet{
 		int id_usuario=FiltroAndroid.filtro(req, resp);
 		
 		if(id_usuario!=0) {
+			
 		String nombre=req.getParameter("nombre");
 		
 	

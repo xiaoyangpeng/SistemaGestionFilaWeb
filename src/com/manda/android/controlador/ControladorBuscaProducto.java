@@ -42,7 +42,7 @@ public class ControladorBuscaProducto extends BaseDao{
 		}
 		
 		
-		public static void main(String[] args) {
+	/*	public static void main(String[] args) {
 				
 				ControladorBuscaProducto busca=new ControladorBuscaProducto("1","222");
 				
@@ -58,7 +58,7 @@ public class ControladorBuscaProducto extends BaseDao{
 				
 				//busca.consultarMercancia();
 				
-			}
+			}*/
 	
 		
 	

@@ -75,9 +75,9 @@
 						<form action="registServlet" method="post">
 						<div class="input-group">
 							<span><i class="fa fa-user" aria-hidden="true"></i></span>
-							<input type="text" placeholder="Nombre"  name="nombre"  id="nombre" oninvalid="setCustomValidity('No puede ser vacío')" oninput="setCustomValidity('')" autofocus required
+							<input type="text" placeholder="Nombre Tienda"  name="nombre"  id="nombre" oninvalid="setCustomValidity('No puede ser vacío')" oninput="setCustomValidity('')" autofocus required
 							
-							value="<%=request.getParameter("nombre")==null?"jaja":request.getParameter("nombre") %>" 
+							value="<%=request.getParameter("nombre")==null?"":request.getParameter("nombre") %>" 
 							> 
 						</div>
 						<div class="input-group">
@@ -87,14 +87,14 @@
 							
 							 autocomplete="off" tabindex="1" name="email" id="email"
 							 
-							  value="<%=request.getParameter("email")==null?"123123@gmail.com":request.getParameter("email") %>" 
+							  value="<%=request.getParameter("email")==null?"":request.getParameter("email") %>" 
 							 > 
 						</div>
 						<div class="input-group">
 							<span><i class="fa fa-lock" aria-hidden="true"></i></span>
 							<input type="Password" placeholder="Password"
 							autocomplete="off" tabindex="1" name="password" id="password" 
-							  value="111111"
+					
 							 >
 						</div>
 						
@@ -104,7 +104,7 @@
 							<input type="Password" placeholder="Confirm Password"
 							 autocomplete="off" tabindex="1" name="repwd" id="repwd" 
 							 
-							   value="111111"/>
+						/>
 						</div>
 						
 						
@@ -119,7 +119,7 @@
 							
 							type="text" placeholder="Telefono" 
 							 autocomplete="off" tabindex="1" name="telefono" id="telefono" 
-							  value="<%=request.getParameter("telefono")==null?"111111111":request.getParameter("telefono") %>" 
+							  value="<%=request.getParameter("telefono")==null?"":request.getParameter("telefono") %>" 
 							/>
 						</div>
 						
@@ -132,7 +132,7 @@
 							name="direccion" id="direccion"
 							oninvalid="setCustomValidity('No puede ser vacío')" oninput="setCustomValidity('')" autofocus required	
 							
-							  value="<%=request.getParameter("direccion")==null?"una calle":request.getParameter("direccion") %>" 
+							  value="<%=request.getParameter("direccion")==null?"":request.getParameter("direccion") %>" 
 							
 							/> 
 
@@ -150,7 +150,24 @@
 									  <option value="Otros" >Otros</option>
 							</select>
 						</div>
-				
+						
+							<div class="input-group">
+							<span><i class="fa fa-list-ul" aria-hidden="true"></i></span>
+							
+							<select name="horario" id="horario" >
+									<option value="none" selected disabled hidden>Tiempo estamado de espera</option>
+									  <option value ="10" >10 Min</option>
+									  <option value ="20" >20 Min</option>
+									    <option value ="30">30 Min</option>
+									  <option value="40 ">40 Min</option>
+									    <option value="50 ">50 Min</option>
+									  <option value="60" >60 Min</option>
+							</select>
+						</div>
+						
+						
+						
+						
 		
 						<div class="input-group">
 						
@@ -174,11 +191,11 @@
 								
 									<%=request.getAttribute("msg")==null?"":request.getAttribute("msg")%>
                 
-								</span>
+							
 								<br/>
 				</p>
 			</div>
-			<div class="clear"></div>
+		
 				
 			</div>
 			
