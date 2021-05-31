@@ -71,7 +71,7 @@ public class VariableSqlWEB {
 
 	public static final String ID_TIENDA_BUSCA_PRODUCTO="select * from cola where cola.id_tienda=? and estado='a' and fecha=?";
 	
-	public static final String LISTAR_RPIMEROS_TURNOS="	select DISTINCT cola.turno_actual, usuario.id_usuario,usuarioencola.turno,formato,usuario.nombre,hora_entrada from usuarioencola\r\n"
+	public static final String LISTAR_RPIMEROS_TURNOS="	select DISTINCT cola.turno_actual, usuario.id_usuario,usuarioencola.turno,formato,usuario.nombre,hora_cancelar,hora_entrada from usuarioencola\r\n"
 			+ "		   join usuario on usuario.id_usuario=usuarioencola.id_usuario\r\n"
 			+ "            join cola on cola.id_cola=usuarioencola.id_cola\r\n"
 			+ "	        where  estado_cliente='E' and usuarioencola.id_cola=?\r\n"

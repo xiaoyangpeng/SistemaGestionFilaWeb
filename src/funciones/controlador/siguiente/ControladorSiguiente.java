@@ -2,9 +2,13 @@ package funciones.controlador.siguiente;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Date;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
 import dao.utils.BaseDao;
 import dao.utils.JdbcUtils;
 import variables.FechaYhora;
@@ -23,13 +27,18 @@ public static void main(String[] args) {
 		//siguiente.getPrimerCincoTurno(1);
 		
 		
-		siguiente.llamaSiguiente(1);
+			siguiente.llamaSiguiente(361);
+	
+	//siguiente.getTodosTurno(361);
+		
+	//System.out.println();
 		
 	}
 	
 
+
 	
-	public  ArrayList<UsuarioEnCola> getPrimerCincoTurno(int id_cola){
+	public  ArrayList<UsuarioEnCola> getTodosTurno(int id_cola){
 		
 		
 		ArrayList<UsuarioEnCola> usuarioEncola=new 	ArrayList<UsuarioEnCola>();
@@ -40,10 +49,7 @@ public static void main(String[] args) {
 
 		BigDecimal turno=(BigDecimal)queryForUnValor(VariableSqlWEB.TURNO_ACTUAL_EN_COLA, id_cola);
 		
-	
-		
-	
-		
+
 		return usuarioEncola;
 		
 	}
@@ -52,32 +58,107 @@ public static void main(String[] args) {
 	public void  llamaSiguiente(int id_cola) {
 	
 
-	ArrayList<UsuarioEnCola> usuarioEncola=(ArrayList<UsuarioEnCola>)getPrimerCincoTurno(id_cola);
+	ArrayList<UsuarioEnCola> usuarioEncola=(ArrayList<UsuarioEnCola>)getTodosTurno(id_cola);
 	
 			// aun hay gente en la fila
 		if(usuarioEncola.size()>0) {
 				
 			int turnoCliente=usuarioEncola.get(0).getTurno();
 			
+			if(turnoCliente!=1) {
 			// dejar estado del produco en T
 			dejarProductoEnT(id_cola);
+			}
 			
-			
-			// dejar estado del usuario anterior en terminado
-			update(VariableSqlWEB.DEJAR_UTLIMO_USUARIO_P_EN_T,FechaYhora.horaMomento(),id_cola);
-			
-		
-			// dejar el siguiente su estado en proceso
-			update(VariableSqlWEB.USUARIO_EN_PROCESO,turnoCliente,id_cola);
-			
-			// actualizar turno actual en tabla cola
-			update(VariableSqlWEB.ACTURALIZAR_TRUNO_ACTUAL,turnoCliente,id_cola);
+			cogerSigueinte(usuarioEncola,id_cola);
 		}
 		
 		
+
+	}
+	
+
+	
+	private boolean cogerSigueinte(ArrayList<UsuarioEnCola> usuarioEncola,int id_cola) {
+	
+	
+		
+		UsuarioEnCola user=usuarioEncola.get(0);
+		
+		if(user.getHora_cancelar()==null) {
+			
+				
+			
+		}else if(FechaYhora.StringtoDaLong(FechaYhora.horaMomento())<
+				
+				FechaYhora.StringtoDaLong(user.getHora_cancelar())) {
+			
+		String sql="update usuarioencola set turno=? where turno=? and id_cola=?";
+		
+		int turnoesteUser=user.getTurno();
+		
+		int[] mynumbero=mirarSiguientSiesRemota(usuarioEncola, 0);
+		
+			if(mynumbero!=null) {
+				
+				int turnoSiguenteUser=mynumbero[0];
+				
+				int idSiguienteUser=mynumbero[1];
+				
+				update(sql,turnoesteUser,turnoSiguenteUser,id_cola);
+				
+				
+				String sql2="  update usuarioencola set turno=turno+1 where (turno>=? and turno<? )\r\n"
+						+ "  \r\n"
+						+ "  and id_cola=? and id_usuario!=?";
+				
+				update(sql2, turnoesteUser,turnoSiguenteUser+1,id_cola,idSiguienteUser);
+				
+			
+			}else {
+				
+				return false;
+			}
+		
+		
+			
+		}
+		
+		
+		// dejar estado del usuario anterior en terminado
+		update(VariableSqlWEB.DEJAR_UTLIMO_USUARIO_P_EN_T,FechaYhora.horaMomento(),id_cola);
+		
+		// dejar el siguiente su estado en proceso
+		update(VariableSqlWEB.USUARIO_EN_PROCESO,user.getTurno(),id_cola);
+						
+		// actualizar turno actual en tabla cola
+		update(VariableSqlWEB.ACTURALIZAR_TRUNO_ACTUAL,user.getTurno(),id_cola);
+		
+		return true;
+	}
+	
+	
+	private int[] mirarSiguientSiesRemota(ArrayList<UsuarioEnCola> usuarioEncola,int array) {
+		
+		UsuarioEnCola user=usuarioEncola.get(array);
+		
+		if(usuarioEncola.size()==array+1) {
+			
+			return null;
+		}
+		else if(user.getFormato().equals("QR")) {
+			
+			int[] mynumber={user.getTurno(), user.getId_usuario()};
+			
+			return mynumber ;
+		}else {
+			
+			return mirarSiguientSiesRemota(usuarioEncola, array+1);
+		}
 		
 	}
 	
+
 	
 	
 	private void dejarProductoEnT(int id_cola) {

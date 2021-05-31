@@ -99,8 +99,10 @@
 							<tr>
 								<td>Nombre</td>
 								<td>Turno</td>
+									<td>Tiempo cancelar</td>
 								<td>Hora Entrada</td>
 								<td>Formato</td>
+							
 							</tr>		
 					<thead>		
 					 <tbody id="tbMain"></tbody>  		

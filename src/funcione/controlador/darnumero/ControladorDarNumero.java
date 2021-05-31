@@ -52,8 +52,7 @@ public class ControladorDarNumero extends BaseDao{
 		id_usuario=Integer.parseInt(iduser.toString());
 
 		
-		
-		
+
 		Connection connection= JdbcUtils.getConeection();
 		CallableStatement call=null;
 		int turnoCola=0;

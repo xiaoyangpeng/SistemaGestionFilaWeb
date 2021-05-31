@@ -22,7 +22,7 @@ public class Email {
 	 
 	private String emailUsuario;
 	private String codigoActivacion;
-	 
+	 private String titulo;
 	
 	private String texto;
 	public Email( String emailUsuario,String codigoActivacion) {
@@ -43,7 +43,7 @@ public class Email {
 	}
 	private void generarEmail() throws MessagingException {
 
-  
+		
         // crear un fichero de confuguracion y guarda
         Properties properties = new Properties();
 
@@ -105,7 +105,7 @@ public class Email {
 
 	
 	        // titulo
-	        mimeMessage.setSubject("Verifica tu  cuenta de Queue");
+	        mimeMessage.setSubject(titulo);
 	       
 	
 		// crear objeto para poner texto
@@ -152,10 +152,14 @@ public class Email {
 		if(que.equals("activa")) {
 			
 			textoActiva();
+			
+			titulo="Verifica tu  cuenta de Queue";
 		}else {
 			
 			
 			textoRecupera(url);
+			
+			titulo="Recuperar contraseña";
 		}
 		
 	  try {

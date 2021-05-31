@@ -57,9 +57,9 @@
 	width: 100px;
     text-align: center;
     border-bottom: 1px #e3e3e3 solid;
-    padding: 15px;
+    padding-bottom: 15px;
 	
-	
+	  padding-top: 15px;
 }
 
 
@@ -81,7 +81,7 @@
 
 	margin:10px;
 	float:right;
-	 width:650px;
+	 width:750px;
 	 	
 	 height: 320px;
 	background:#FFF;

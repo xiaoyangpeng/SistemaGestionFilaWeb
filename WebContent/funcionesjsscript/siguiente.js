@@ -169,6 +169,12 @@
 		    	     row.appendChild(turnoCell); 
 		    	     
 		    	     
+		    	      var horacancelarCell = document.createElement('td');
+	    	    horacancelarCell.innerHTML = h.hora_cancelar;  
+	    	     row.appendChild(horacancelarCell);    
+		    	     
+		    	     
+		    	     
 	    	     var horaCell = document.createElement('td');
 	    	     horaCell.innerHTML = h.hora_entrada;  
 	    	     row.appendChild(horaCell); 

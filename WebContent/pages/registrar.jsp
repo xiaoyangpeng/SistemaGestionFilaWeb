@@ -155,7 +155,7 @@
 							<span><i class="fa fa-list-ul" aria-hidden="true"></i></span>
 							
 							<select name="horario" id="horario" >
-									<option value="none" selected disabled hidden>Tiempo estamado de espera</option>
+									<option value="none" selected disabled hidden>Tiempo estimado de espera</option>
 									  <option value ="10" >10 Min</option>
 									  <option value ="20" >20 Min</option>
 									    <option value ="30">30 Min</option>

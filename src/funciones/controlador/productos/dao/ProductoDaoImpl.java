@@ -35,7 +35,10 @@ public class ProductoDaoImpl extends BaseDao implements ProdcutoDao {
 				// TODO Auto-generated method stub
 				
 				String sql="delete from "+que+" where id_producto=?";
-			
+				
+				String sql2="delete from incorporar where id_producto=?";
+				
+				update(sql2, id);
 				
 				return update(sql, id);
 			}

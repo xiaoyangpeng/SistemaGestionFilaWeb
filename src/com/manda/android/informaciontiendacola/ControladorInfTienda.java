@@ -50,7 +50,8 @@ public class ControladorInfTienda extends BaseDao {
 		
 		ultimoTurno();
 			
-		remota.setTiempomedia(remota.getTiempomedia()*remota.getUltimo_turno());
+		int turnoqueda=remota.getUltimo_turno()-remota.getTurno_actual();
+		remota.setTiempomedia(remota.getTiempomedia()*turnoqueda);
 		
 	}
 	

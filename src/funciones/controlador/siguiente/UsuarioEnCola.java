@@ -18,7 +18,21 @@ public class UsuarioEnCola {
 	private int turno_actual;
 
 	
+	private String hora_cancelar;
 	
+	
+
+
+
+	public String getHora_cancelar() {
+		return hora_cancelar;
+	}
+
+
+
+	public void setHora_cancelar(String hora_cancelar) {
+		this.hora_cancelar = hora_cancelar;
+	}
 
 
 

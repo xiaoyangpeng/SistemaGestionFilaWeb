@@ -45,7 +45,7 @@ public class SiguienteServlet extends HttpServlet{
 		
 				ArrayList<UsuarioEnCola> usuarioencola=new ArrayList<>();
 				
-				usuarioencola=siguiente.getPrimerCincoTurno(id_cola);
+				usuarioencola=siguiente.getTodosTurno(id_cola);
 				
 				String formatoJson=CrearJson.crearJson(usuarioencola);
 				
