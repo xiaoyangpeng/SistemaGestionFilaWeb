@@ -52,6 +52,10 @@ public class MandarListaProductoUsuarioWeb extends HttpServlet
 		
 		out.close();
 		
+		
+		
+		System.out.println(json);
+		
 	}
 	
 	

@@ -26,7 +26,7 @@ public class LoginSinContrasena extends HttpServlet {
 		
 		if(id_cola==0) {
 			
-			req.getRequestDispatcher("/pages/login.jsp").forward(req,resp);
+			resp.sendRedirect(req.getContextPath()+"/pages/login.jsp");
 			
 		}else {
 			

@@ -65,10 +65,13 @@ public static void main(String[] args) {
 				
 			int turnoCliente=usuarioEncola.get(0).getTurno();
 			
-			if(turnoCliente!=1) {
+			//if(turnoCliente!=1) {
 			// dejar estado del produco en T
-			dejarProductoEnT(id_cola);
-			}
+				
+			//dejarProductoEnT(id_cola);
+			
+			
+			//}
 			
 			cogerSigueinte(usuarioEncola,id_cola);
 		}
@@ -125,11 +128,10 @@ public static void main(String[] args) {
 		}
 		
 		
-		// dejar estado del usuario anterior en terminado
-		update(VariableSqlWEB.DEJAR_UTLIMO_USUARIO_P_EN_T,FechaYhora.horaMomento(),id_cola);
+	
 		
 		// dejar el siguiente su estado en proceso
-		update(VariableSqlWEB.USUARIO_EN_PROCESO,user.getTurno(),id_cola);
+		update(VariableSqlWEB.USUARIO_EN_PROCESO,FechaYhora.horaMomento(),user.getTurno(),id_cola);
 						
 		// actualizar turno actual en tabla cola
 		update(VariableSqlWEB.ACTURALIZAR_TRUNO_ACTUAL,user.getTurno(),id_cola);
@@ -140,14 +142,15 @@ public static void main(String[] args) {
 	
 	private int[] mirarSiguientSiesRemota(ArrayList<UsuarioEnCola> usuarioEncola,int array) {
 		
-		UsuarioEnCola user=usuarioEncola.get(array);
-		
-		if(usuarioEncola.size()==array+1) {
-			
+		if(usuarioEncola.size()==array) {
 			return null;
 		}
-		else if(user.getFormato().equals("QR")) {
+		
+		UsuarioEnCola user=usuarioEncola.get(array);
+		
+		 if(user.getFormato().equals("QR")) {
 			
+
 			int[] mynumber={user.getTurno(), user.getId_usuario()};
 			
 			return mynumber ;
@@ -156,12 +159,15 @@ public static void main(String[] args) {
 			return mirarSiguientSiesRemota(usuarioEncola, array+1);
 		}
 		
+	
+
+		
 	}
 	
 
 	
 	
-	private void dejarProductoEnT(int id_cola) {
+	/*private void dejarProductoEnT(int id_cola) {
 		
 		Connection connection= JdbcUtils.getConeection();
 		CallableStatement call=null;
@@ -184,7 +190,7 @@ public static void main(String[] args) {
 
 		}
 		
-	}
+	}*/
 	
 	
 	/*

@@ -58,7 +58,7 @@ public class VariableSqlWEB {
 			+ "incorporar on incorporar.id_producto=producto.id_producto\r\n"
 			+ "join usuarioencola on usuarioencola.id_cola=incorporar.id_cola\r\n"
 			+ "where incorporar.id_cola=? and incorporar.id_usuario=?\r\n"
-			+ "and usuarioencola.estado_cliente='E' and incorporar.cantidad_producto>0"
+			+ " and incorporar.cantidad_producto>0"
 			+ "and incorporar.estado='E'";
 	
 	
@@ -80,15 +80,29 @@ public class VariableSqlWEB {
 
 	
 
-	public static final String USUARIO_EN_PROCESO="update  usuarioencola  set ESTADO_CLIENTE='P'"
+	public static final String USUARIO_EN_PROCESO="update  usuarioencola  set ESTADO_CLIENTE='P' , HORA_TERMINADA=? "
 			+ "where turno=? "
 			+ "and id_cola=?";
 	
 	
 	
-	public static final String DEJAR_UTLIMO_USUARIO_P_EN_T="update usuarioencola set estado_cliente='T' ,"
-			+ " HORA_TERMINADA=? "
-			+ " where id_cola=? and estado_cliente='P'";
+	public static final String DEJAR_UTLIMO_USUARIO_P_EN_T="update usuarioencola set estado_cliente='T'"
+			+ " where id_cola=? and estado_cliente='P' and id_usuario=?";
+	
+	
+	
+	
+	public static final String LISTA_CLIENTE_EN_TIENDA="	select DISTINCT usuario.id_usuario,usuarioencola.turno,usuario.nombre from usuarioencola\r\n"
+			+ "		   join usuario on usuario.id_usuario=usuarioencola.id_usuario\r\n"      
+			+ "	        where  estado_cliente='P' and usuarioencola.id_cola=?\r\n"
+			+ "        \r\n"
+			+ "        order by usuarioencola.turno\r\n";
+	
+	
+	
+	public static final String DEJAR_ESTADO_PRODUCTO_EN_T="update incorporar set estado='T' where  id_cola=? and id_usuario=? ";
+	
+	
 	
 	
 	

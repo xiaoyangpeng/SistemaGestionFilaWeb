@@ -9,6 +9,9 @@
 		<div class="botones">
 		
 				<a href="/proyectoFinalEntrada/pagefunciones/siguiente.jsp"><span class="boton_dentro" id="siguiente">Siguiente</span></a>
+				
+					<a href="/proyectoFinalEntrada/pagefunciones/userentienda.jsp"><span class="boton_dentro" id="userentienda">Usuario en Tienda</span></a>
+					
 				<a href="/proyectoFinalEntrada/manager/productoservlet?action=list"><span class="boton_dentro" id="addupdate">Añadir modificar producto</span></a>
 				<a href="/proyectoFinalEntrada/pagefunciones/darnumero.jsp"><span class="boton_dentro" id="darnumero">Dar numero</span></a>
 				<a href="/proyectoFinalEntrada/cargarmenu"><span class="boton_dentro" id="generaqr">Otros</span></a>
