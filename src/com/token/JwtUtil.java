@@ -12,8 +12,8 @@ import com.auth0.jwt.exceptions.JWTCreationException;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.auth0.jwt.interfaces.JWTVerifier;
+import com.dao.utils.BaseDao;
 
-import dao.utils.BaseDao;
 import variables.GeneraCodigo;
 import variables.VariableSqlWEB;
 
@@ -47,7 +47,7 @@ public class JwtUtil  extends BaseDao{
 		//System.out.println(crearAndoird("dsaf",222 ));
 		
 		//System.out.println(vettificar_id_tienda("eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYWRhIjoiRmtNU2siLCJpZF9jb2xhIjozMDEsImlkX3RpZW5kYSI6MH0.l6_1DbJ2K3kw_z-DgvgUJor2LFBxgJ0Gb7_qYj3lKbE"));
-		//System.out.println(crearTokenWeb(2225555,55 ));
+		System.out.println(crearAndoird("sadfsa",222));
 	}
 	
 	public static String crearAndoird(String email,int id_usuario) {

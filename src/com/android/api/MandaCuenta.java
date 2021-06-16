@@ -1,7 +1,8 @@
-package com.android.app;
+package com.android.api;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 
 import javax.servlet.ServletContext;
@@ -13,40 +14,55 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.io.IOUtils;
 
-import com.web.filter.ComprobacionToken;
-import com.web.servlet.managefunction.controlador.qr.ContorladorQr;
-import com.web.servlet.managefunction.controlador.qr.QRCodeUtil;
 
 
-@WebServlet("/descargaapp")
-public class GeneraApk extends HttpServlet{
 
+@WebServlet("/mandarcuenta")
+public class MandaCuenta extends HttpServlet{
+	
+	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+	
 		
-			
+		String id_prodcuto=req.getParameter("idproducto");
+		
+		String categoria=req.getParameter("categoria");
+
+
+		
+		String dowloadFile=categoria+"/"+id_prodcuto+".png";
+		
+		
 		ServletContext servletContext=getServletContext();
 		
 		// decir al 客户端 tipo de datos que va ha devolver 
-		String tipoDeArchivo=servletContext.getMimeType("app/app-debug.apk");
+		String tipoDeArchivo=servletContext.getMimeType("/imagenes/"+dowloadFile);
 		
 		resp.setContentType(tipoDeArchivo);
 		
 		// 用来下载
-		resp.setHeader("Content-Disposition", "attament; filename=queue.apk");
+		//resp.setHeader("Content-Disposition", "attament ;filename="+dowloadFile);
 		
-	
-		InputStream recouce=servletContext.getResourceAsStream("/app/app-debug.apk");
+		InputStream input=servletContext.getResourceAsStream("/imagenes/"+dowloadFile);
 		
+		
+		if(input==null) {
+			
+			input=servletContext.getResourceAsStream("/imagenes/logo.png");
+		}
 		
 		OutputStream outputStream=resp.getOutputStream();
 		
-		IOUtils.copy(recouce, outputStream);
+		
+		//读取流中的数据 ， 复制到输出流， 输出给客户端
+		IOUtils.copy(input, outputStream);
+   
+		
 		
 		
 		
 	}
 
-	
 }
