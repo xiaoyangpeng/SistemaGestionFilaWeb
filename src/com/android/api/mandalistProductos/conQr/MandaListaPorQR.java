@@ -33,21 +33,17 @@ public class MandaListaPorQR extends HttpServlet{
 		
 		int id_usuarioaux=FiltroAndroid.filtro(req, resp);
 		
-		String id_usuario=req.getParameter("idusuario");
-		
+
 		String id_cola=req.getParameter("idcola");
 		
 		String nombreProducto=req.getParameter("nombreproducto");
 
 		nombreProducto=nombreProducto.toLowerCase();
 		
-		if(id_cola!=null&&id_usuario!=null&&nombreProducto!=null) {
+		if(id_cola!=null&&nombreProducto!=null) {
 			
-						// vertifica que el id del usuario es el quiene esta llamando
-			
-				if(Integer.parseInt(id_usuario)==id_usuarioaux) {
-			
-				ControladorBuscaProducto buscar=new ControladorBuscaProducto(id_cola,id_usuario,nombreProducto);
+					
+				ControladorBuscaProducto buscar=new ControladorBuscaProducto(id_cola,id_usuarioaux,nombreProducto);
 				
 				ProductosAux productoAux=new ProductosAux(); // meter arrayList en un clase facilita trabajar luego
 				
@@ -65,12 +61,12 @@ public class MandaListaPorQR extends HttpServlet{
 				out.flush();
 				
 				out.close();
-				}else {
-					
-					resp.setStatus(RespuestaAndroid.NO_HAY_AUTORIZACION);
-					
-				}
-		}
+				
+	}else {
+		
+		resp.setStatus(RespuestaAndroid.NO_HAY_AUTORIZACION);
+		
 	}
+}
 	
 }

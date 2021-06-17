@@ -35,13 +35,11 @@ public class MandarListaProductoUsuario extends HttpServlet
 		int id_usuarioaux=FiltroAndroid.filtro(req, resp);
 		
 		String id_cola=req.getParameter("idcola");
-		String id_usuario=req.getParameter("idusuario");
-		
 
 
-		if(Integer.parseInt(id_usuario)==id_usuarioaux) {
+		if(id_usuarioaux!=0) {
 		
-		BuscaListaProductoUsuario buscaListaProductoUsuario=new BuscaListaProductoUsuario(Integer.parseInt(id_cola),Integer.parseInt(id_usuario));
+		BuscaListaProductoUsuario buscaListaProductoUsuario=new BuscaListaProductoUsuario(Integer.parseInt(id_cola),id_usuarioaux);
 		
 		
 		ListaProductoAux listaProductoAux=new ListaProductoAux();

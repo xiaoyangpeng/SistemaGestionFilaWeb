@@ -6,7 +6,6 @@ public class ProductoMandaUsuario {
 	
 	private int id_producto;
 	
-	private int id_usuario;
 	
 	private int id_cola;
 	
@@ -20,14 +19,7 @@ public class ProductoMandaUsuario {
 		this.id_producto = id_producto;
 	}
 
-	public int getId_usuario() {
-		return id_usuario;
-	}
-
-	public void setId_usuario(int id_usuario) {
-		this.id_usuario = id_usuario;
-	}
-
+	
 	public int getId_cola() {
 		return id_cola;
 	}

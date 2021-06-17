@@ -1,4 +1,4 @@
-package com.android.informacionfila.qr;
+package com.android.api.incorporar.qr;
 
 
 
@@ -85,6 +85,8 @@ public class ControladorIncorporarQR extends BaseDao{
 		
 		if(id==null) {
 			
+			 incorporar();
+			 
 			return 1;
 			
 		}else {

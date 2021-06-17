@@ -18,13 +18,13 @@ public class ControladorBuscaProducto extends BaseDao{
 
 	private	String id_cola;
 	
-	private String id_usuario;
+	private int id_usuario;
 	
 	private ArrayList<Incorporar> listaUsuario;
 
 		private String nombreProducto;
 	
-		public ControladorBuscaProducto(String id_cola, String id_usuario,String nombreProducto) {
+		public ControladorBuscaProducto(String id_cola, int id_usuario,String nombreProducto) {
 			
 				this.id_cola = id_cola;
 				this.id_usuario = id_usuario;
@@ -33,7 +33,7 @@ public class ControladorBuscaProducto extends BaseDao{
 			}
 		
 		
-		public ControladorBuscaProducto(String id_cola, String id_usuario) {
+		public ControladorBuscaProducto(String id_cola, int id_usuario) {
 		
 			this.id_cola = id_cola;
 			this.id_usuario = id_usuario;
@@ -48,26 +48,7 @@ public class ControladorBuscaProducto extends BaseDao{
 		}
 		
 		
-	/*	public static void main(String[] args) {
-				
-				ControladorBuscaProducto busca=new ControladorBuscaProducto("1","222");
-				
-				
-				busca.consultaListaProducto();
-				//Comida comida=busca.consultaComida(1);
-				
-				//System.out.println(comida.getIngrediente());
-				
-				//ControladorBuscaProducto busca=new ControladorBuscaProducto("jaja");
-				
-				//ControladorBuscaProducto busca=new ControladorBuscaProducto("rb6GU5Ujhyo8qHAYSw9t1602");
-				
-				//busca.consultarMercancia();
-				
-			}*/
-	
-		
-	
+
 	public ArrayList<Productos> consultaListaProducto(){
 		
 		

@@ -12,7 +12,9 @@ public class VariableSQL {
 	public static final String ANADAIR_USUARIO="insert into usuario values(null,?,?,?,?)";
 
 	public static final String CON_ROWID_BUSCA_IDUSUARIO="select ID_USUARIO from usuario where ROWID=?";
-
+	
+	
+	public static final String ANDAIR_USUARIOENCOLA_REMOTA="insert into usuarioEnCola values (?,?,?,'RE',?,'E',?,null)";
 	
 	public static final String USAURIO_ENLINEA="update cuenta_usuario set en_linea=? where email=?";
 	

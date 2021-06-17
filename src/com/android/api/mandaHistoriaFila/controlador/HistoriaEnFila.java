@@ -9,7 +9,7 @@ public class HistoriaEnFila {
 	
 	public String hora_entrada;
 	
-	public String hora_salida;
+	public String hora_terminada;
 
 	public String getFecha() {
 		return fecha;
@@ -35,13 +35,15 @@ public class HistoriaEnFila {
 		this.hora_entrada = hora_entrada;
 	}
 
-	public String getHora_salida() {
-		return hora_salida;
+	public String getHora_terminada() {
+		return hora_terminada;
 	}
 
-	public void setHora_salida(String hora_salida) {
-		this.hora_salida = hora_salida;
+	public void setHora_terminada(String hora_terminada) {
+		this.hora_terminada = hora_terminada;
 	}
+
+	
 	
 	
 	

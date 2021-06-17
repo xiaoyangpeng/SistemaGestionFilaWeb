@@ -113,10 +113,12 @@ public class ControladorSign extends BaseDao{
 		    
 		    // una vez creado usuario y cuenta_usuario manta el codigo de activacion
 		    // al email del usuario
-		    Email mandaemail=new Email(tiendaEntrada.getEmail(),codigoActivacion);
+		    /*Email mandaemail=new Email(tiendaEntrada.getEmail(),codigoActivacion);
 		    
-		    mandaemail.mantar("activa",null);
+		    mandaemail.mantar("activa",null);*/
 		    
+			MandaEmailActivacion mantar=new MandaEmailActivacion();
+			mantar.start();
 			
 		    cerrarConexion();
 			
@@ -132,7 +134,18 @@ public class ControladorSign extends BaseDao{
 	}
 	
 	
-	
+	class MandaEmailActivacion extends Thread{
+		
+		@Override
+		public void run() {
+		
+			Email mandaemail=new Email(tiendaEntrada.getEmail(),codigoActivacion);
+		    
+		    mandaemail.mantar("activa",null);
+			
+		}
+		
+	}
 	
 	
 

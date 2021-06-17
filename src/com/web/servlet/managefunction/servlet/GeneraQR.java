@@ -19,9 +19,9 @@ import com.web.filter.ComprobacionToken;
 import com.web.servlet.managefunction.controlador.qr.ContorladorQr;
 import com.web.servlet.managefunction.controlador.qr.QRCodeUtil;
 
-import variables.DirecotrioDescargaApp;
 import variables.DirectorioImagen;
 import variables.VariableFijo;
+import variables.hayquemodificar.DirecotrioDescargaApp;
 
 
 @WebServlet("/qr")

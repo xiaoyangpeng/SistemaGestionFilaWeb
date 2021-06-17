@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.android.api.usuarioAddProducto.controlador.ControladorIncorporarQR;
 import com.android.api.usuarioAddProducto.controlador.ProductoMandaUsuario;
+import com.android.filtro.FiltroAndroid;
 import com.google.gson.Gson;
 
 
@@ -24,24 +25,29 @@ public class RecibeCambioProducto extends HttpServlet{
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		BufferedReader br = req.getReader();
+		int id_usuarioaux=FiltroAndroid.filtro(req, resp);
 		
-	    StringBuilder sb = new StringBuilder("");
-	    String str;
-        while ((str = br.readLine()) != null)
-        {
-            sb.append(str);
-        }
-        
-        
-        Gson gson=new Gson();
-        
-        ProductoMandaUsuario productoMandaUsuario=gson.fromJson(sb.toString(), ProductoMandaUsuario.class);
-        
-        ControladorIncorporarQR controladorIncorporarQR=new ControladorIncorporarQR();
-        
-        controladorIncorporarQR.usuario_anadir_productos(productoMandaUsuario);
-        
+		
+		if(id_usuarioaux!=0) {
+			
+			BufferedReader br = req.getReader();
+			
+		    StringBuilder sb = new StringBuilder("");
+		    String str;
+	        while ((str = br.readLine()) != null)
+	        {
+	            sb.append(str);
+	        }
+	        
+	        System.out.println(sb);
+	        Gson gson=new Gson();
+	        
+	        ProductoMandaUsuario productoMandaUsuario=gson.fromJson(sb.toString(), ProductoMandaUsuario.class);
+	        
+	        ControladorIncorporarQR controladorIncorporarQR=new ControladorIncorporarQR();
+	        
+	        controladorIncorporarQR.usuario_anadir_productos(productoMandaUsuario,id_usuarioaux);
+		}
         
 	}
 }

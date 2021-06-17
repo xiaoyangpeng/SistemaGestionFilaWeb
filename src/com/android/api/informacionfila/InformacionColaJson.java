@@ -1,4 +1,4 @@
-package com.android.informacionfila.controlador;
+package com.android.api.informacionfila;
 
 
 
@@ -10,16 +10,32 @@ public class InformacionColaJson {
 	
 	private String turnoActual;
 
-	
-
 	private String turnoQueda;
 
+	private String miturno;
 	
-	public InformacionColaJson(int timepo, String turnoActual,String turnoqueda) {
+	private String id_cola;
+
+
+	
+
+
+	public InformacionColaJson(int timepo, String turnoActual, String turnoQueda, String miturno, String id_cola) {
 		this.timepo = timepo;
 		this.turnoActual = turnoActual;
-		this.turnoQueda=turnoqueda;
+		this.turnoQueda = turnoQueda;
+		this.miturno = miturno;
+		this.id_cola = id_cola;
+	}
 
+
+	public String getId_cola() {
+		return id_cola;
+	}
+
+
+	public void setId_cola(String id_cola) {
+		this.id_cola = id_cola;
 	}
 
 
@@ -50,6 +66,16 @@ public class InformacionColaJson {
 
 	public void setTurnoQueda(String turnoQueda) {
 		this.turnoQueda = turnoQueda;
+	}
+
+
+	public String getMiturno() {
+		return miturno;
+	}
+
+
+	public void setMiturno(String miturno) {
+		this.miturno = miturno;
 	}
 
 

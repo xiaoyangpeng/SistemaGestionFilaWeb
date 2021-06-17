@@ -30,8 +30,7 @@ public class MandarInformacionDeProducto extends HttpServlet{
 		
 		int id_usuarioaux=FiltroAndroid.filtro(req, resp);
 		
-		String id_usuario=req.getParameter("idusuario");
-		
+
 		String id_cola=req.getParameter("idcola");
 		
 		String id_producto=req.getParameter("idproducto");
@@ -39,12 +38,12 @@ public class MandarInformacionDeProducto extends HttpServlet{
 		String categoria=req.getParameter("categoria");
 	
 		
-		if(Integer.parseInt(id_usuario)==id_usuarioaux) {
+		if(id_usuarioaux!=0) {
 		
 	
 		String json = null;
 		
-		ControladorBuscaProducto buscar=new ControladorBuscaProducto(id_cola,id_usuario);
+		ControladorBuscaProducto buscar=new ControladorBuscaProducto(id_cola,id_usuarioaux);
 
 		// 调用GSON jar工具包封装好的toJson方法，可直接生成JSON字符串
 		Gson gson=new GsonBuilder().setPrettyPrinting().create();

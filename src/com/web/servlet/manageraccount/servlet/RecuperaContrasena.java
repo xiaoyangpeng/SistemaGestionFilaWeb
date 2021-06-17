@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.mandarEmail.Email;
+import com.mandarEmail.MandarEmailRecuperarContrasena;
 import com.token.JWTContrasena;
 import com.web.servlet.manageraccount.controlador.ControladorContrasena;
 
@@ -32,17 +33,26 @@ public class RecuperaContrasena extends HttpServlet {
 		
 		int id_tienda=vertifica.existeEmialTienda(email);
 		
+		
+		
+		
 		if(id_tienda!=0) {
 			
 			emailCorrecto(req, resp);
 			
-			mandaEmail(email, "tienda", id_tienda);
+			
+			MandarEmailRecuperarContrasena manda=new MandarEmailRecuperarContrasena(email, "tienda", id_tienda);
+			
+			
+			manda.start();
 			
 		}else if(id_usuario!=0) {
 			
 			emailCorrecto(req, resp);
 			
-			mandaEmail(email, "usuario", id_usuario);
+			MandarEmailRecuperarContrasena manda=new MandarEmailRecuperarContrasena(email, "usuario", id_usuario);
+			
+			manda.start();
 			
 		}else {
 			
@@ -52,24 +62,11 @@ public class RecuperaContrasena extends HttpServlet {
 		
 		
 
-		
+
 	}
 	
-	private void mandaEmail(String email,String rol,int id) {
-		
-		
-		String url=JWTContrasena.crearTokenRecuperaContrasena(id, rol);
-		
-		url=UrlEmailRecuperaContrasena.URL+url;
-		
-		Email manda=new Email(email);
-	
-		manda.mantar("recuperar", url);
-		
-	}
-	
-	
-	
+
+
 	
 	private void emailCorrecto(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
 		

@@ -16,18 +16,17 @@ import variables.VariableSQL;
 
 public class ControladorIncorporarQR extends BaseDao{
 
-	
-	private String emailUsuario;
+
 	
 	private String codigoQR;
 	
 	
 	private BigDecimal id_cola;
 	
-	private BigDecimal id_usuario;
+	private int id_usuario;
 
-	public ControladorIncorporarQR(String emailUsuario, String codigoQR) {
-		this.emailUsuario = emailUsuario;
+	public ControladorIncorporarQR(int id_usuario, String codigoQR) {
+		this.id_usuario=id_usuario;
 		this.codigoQR = codigoQR;
 	}
 	
@@ -81,8 +80,7 @@ public class ControladorIncorporarQR extends BaseDao{
 			return -1;
 		}else {
 			
-			buscarIdUsuario();
-			
+		
 			return buscarSiYaestaDentrodeLacola();
 		}
 	
@@ -104,14 +102,7 @@ public class ControladorIncorporarQR extends BaseDao{
 	}
 	
 	
-	
-	private void buscarIdUsuario() {
-		
-		id_usuario=(BigDecimal)queryForUnValor(VariableSQL.CON_EMAIL_BUSCAR_ID_USUARIO, emailUsuario);
-		
-	}
 
-	
 	public String incorporar() {
 
 		Connection connection= JdbcUtils.getConeection();
@@ -143,7 +134,7 @@ public class ControladorIncorporarQR extends BaseDao{
 
 
 	
-	public synchronized void usuario_anadir_productos(ProductoMandaUsuario productoMandaUsuario) {
+	public synchronized void usuario_anadir_productos(ProductoMandaUsuario productoMandaUsuario,int id_usuario) {
 		
 		
 		
@@ -153,12 +144,12 @@ public class ControladorIncorporarQR extends BaseDao{
 		// si no existe añadir
 		
 
-		BigDecimal usuarioExiste=(BigDecimal)queryForUnValor(VariableSQL.BUSCAR_SI_EXISTE_IDPRODUCTO_CON_IDCOLA_IDUSUARIO,productoMandaUsuario.getId_usuario(),
+		BigDecimal usuarioExiste=(BigDecimal)queryForUnValor(VariableSQL.BUSCAR_SI_EXISTE_IDPRODUCTO_CON_IDCOLA_IDUSUARIO,id_usuario,
 				productoMandaUsuario.getId_producto(),productoMandaUsuario.getId_cola());
 		
 		if(usuarioExiste==null) {
 			
-			update(VariableSQL.USUARIO_ANADIR_PRODUCTOS,productoMandaUsuario.getId_producto(),productoMandaUsuario.getId_usuario()
+			update(VariableSQL.USUARIO_ANADIR_PRODUCTOS,productoMandaUsuario.getId_producto(),id_usuario
 					,productoMandaUsuario.getId_cola(),productoMandaUsuario.getCantidad());
 			
 		}else {
@@ -166,12 +157,12 @@ public class ControladorIncorporarQR extends BaseDao{
 			if(productoMandaUsuario.getCantidad()==0) {
 				
 				update(VariableSQL.ELIMINAR_PRODUCTO_EN_INCORPORAR, 
-						productoMandaUsuario.getId_cola(),productoMandaUsuario.getId_usuario(),productoMandaUsuario.getId_producto());
+						productoMandaUsuario.getId_cola(),id_usuario,productoMandaUsuario.getId_producto());
 				
 			}else {
 				
 				
-				update(VariableSQL.ACTUALIZAR_TABLA_INCORPORAR, productoMandaUsuario.getCantidad(),productoMandaUsuario.getId_usuario(),
+				update(VariableSQL.ACTUALIZAR_TABLA_INCORPORAR, productoMandaUsuario.getCantidad(),id_usuario,
 					productoMandaUsuario.getId_producto(),productoMandaUsuario.getId_cola());
 			
 				}
@@ -194,26 +185,9 @@ public class ControladorIncorporarQR extends BaseDao{
 	}
 
 
-	public BigDecimal getId_usuario() {
-		return id_usuario;
-	}
-
-
-	public void setId_usuario(BigDecimal id_usuario) {
-		this.id_usuario = id_usuario;
-	}
-	
-	
-	
 	
 	
 
-	
-	
-	
-	
-	
-	
 	
 	
 	
